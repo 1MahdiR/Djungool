@@ -48,6 +48,12 @@ class BigIntegerField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -88,6 +94,12 @@ class BooleanField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -130,6 +142,12 @@ class CharField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -174,6 +192,12 @@ class DateField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -214,6 +238,12 @@ class DateTimeField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -257,6 +287,12 @@ class DecimalField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -308,6 +344,12 @@ class EmailField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -351,6 +393,12 @@ class FileField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -389,6 +437,12 @@ class FloatField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -431,6 +485,12 @@ class ImageField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -469,6 +529,12 @@ class IntegerField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -511,6 +577,12 @@ class PositiveBigIntegerField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -551,6 +623,12 @@ class PositiveIntegerField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -593,6 +671,12 @@ class PositiveSmallIntegerField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -633,6 +717,12 @@ class SmallIntegerField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -675,6 +765,12 @@ class TextField_Builder:
         self._null = null
         self._unique = unique
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -715,6 +811,12 @@ class TimeField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -757,6 +859,12 @@ class URLField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -801,6 +909,12 @@ class UUIDField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -847,6 +961,12 @@ class ManyToManyField_Builder:
         self._blank = blank
         self._null = null
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -886,6 +1006,12 @@ class ForeignKeyField_Builder:
         self._related_name = related_name
         self._blank = blank
         self._null = null
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
 
     def __str__(self):
 
@@ -929,6 +1055,12 @@ class OneToOneField_Builder:
         self._blank = blank
         self._null = null
 
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
     def __str__(self):
 
         name = self._name
@@ -960,7 +1092,24 @@ class OneToOneField_Builder:
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
-
-
 class Model_Builder:
-    pass
+
+    def __init__(self,name,*fields):
+        self.name = name
+        self.fields = list()
+        self.fields.extend(fields)
+
+    def add_field(self,field):
+        self.fields.append(field)
+
+    def remove_field(self,index):
+        # index should be validated befor it get passed to the function
+        self.fields.remove(self.fields[index])
+
+    def __str__(self):
+        model_str = "class {model_name}(models.Model):\n".format(model_name=self.name)
+
+        for field in self.fields:
+            model_str += "\t{field}\n".format(field=field)
+
+        return model_str

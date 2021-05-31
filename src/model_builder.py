@@ -108,7 +108,7 @@ class BooleanField_Builder:
         field = self._field
 
         default = ""
-        if self._default:
+        if self._default != None:
             default = "default={},".format(self._default)
 
         blank = ""
@@ -851,7 +851,7 @@ class TimeField_Builder:
 
 class URLField_Builder:
 
-    def __init__(self,name,max_length,default=None,blank=False,null=False,unique=False):
+    def __init__(self,name,max_length=200,default=None,blank=False,null=False,unique=False):
         self._name = name
         self._field = "models.URLField"
         self._max_length = max_length

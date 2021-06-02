@@ -48,6 +48,9 @@ class BigIntegerField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -94,6 +97,9 @@ class BooleanField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -142,6 +148,9 @@ class CharField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -192,6 +201,9 @@ class DateField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -238,6 +250,9 @@ class DateTimeField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -287,6 +302,9 @@ class DecimalField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -344,6 +362,9 @@ class EmailField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -393,6 +414,9 @@ class FileField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -437,6 +461,9 @@ class FloatField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -485,6 +512,9 @@ class ImageField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -529,6 +559,9 @@ class IntegerField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -577,6 +610,9 @@ class PositiveBigIntegerField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -623,6 +659,9 @@ class PositiveIntegerField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -671,6 +710,9 @@ class PositiveSmallIntegerField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -717,6 +759,9 @@ class SmallIntegerField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -765,6 +810,9 @@ class TextField_Builder:
         self._null = null
         self._unique = unique
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -811,6 +859,9 @@ class TimeField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -859,6 +910,9 @@ class URLField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -909,6 +963,9 @@ class UUIDField_Builder:
         self._blank = blank
         self._null = null
         self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -961,6 +1018,9 @@ class ManyToManyField_Builder:
         self._blank = blank
         self._null = null
 
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
     def get_name(self):
         return self._name
 
@@ -1006,6 +1066,9 @@ class ForeignKeyField_Builder:
         self._related_name = related_name
         self._blank = blank
         self._null = null
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -1054,6 +1117,9 @@ class OneToOneField_Builder:
         self._related_name = related_name
         self._blank = blank
         self._null = null
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
 
     def get_name(self):
         return self._name
@@ -1105,6 +1171,9 @@ class Model_Builder:
     def remove_field(self,index):
         # index should be validated befor it get passed to the function
         self.fields.remove(self.fields[index])
+
+    def __repr__(self):
+        return "<model: <model_name: %s>>" % (self.name)
 
     def __str__(self):
         model_str = "class {model_name}(models.Model):\n".format(model_name=self.name)

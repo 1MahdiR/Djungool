@@ -626,7 +626,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_Model_Builder_1(self): # simple test
 
         field = CharField_Builder(
-        'char_test', 32    
+        'char_test', 32
         )
 
         model = Model_Builder('Model_Test', field)
@@ -638,11 +638,11 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_Model_Builder_2(self): # two fields and removing the first field
 
         field_1 = CharField_Builder(
-        'field_1', 64    
+        'field_1', 64
         )
 
         field_2 = DateField_Builder(
-        'field_2'    
+        'field_2'
         )
 
         model = Model_Builder('_2_model_field', field_1, field_2)
@@ -657,7 +657,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
         self.assertEqual(str(model),'class _2_model_field(models.Model):\n' + \
                                     '\tfield_2 = models.DateField()\n'
         )
-    
+
     def test_Model_Builder_3(self): # two fields and adding third field
 
         field_1 = FloatField_Builder(
@@ -686,11 +686,11 @@ class TestFieldBuilderClasses(unittest.TestCase):
         )
 
     def test_Model_Builder_4(self): # four fields and removing then adding a field
-        
+
         field_1 = CharField_Builder(
         'name', max_length=64
         )
-        
+
         field_2 = CharField_Builder(
         'author', max_length=64
         )
@@ -732,7 +732,30 @@ class TestFieldBuilderClasses(unittest.TestCase):
                                     '\tpub_date = models.DateField()\n' + \
                                     '\tauthor = models.ForeignKey(Author,on_delete=models.CASCADE,related_name=\'book\',null=True)\n'
         )
-        
+
+    def test_Model_Builder_5(self): # no field
+
+        model = Model_Builder('Model_Test')
+
+        self.assertEqual(str(model),'class Model_Test(models.Model):\n' + \
+                                    '\tpass\n'
+        )
+
+    def test_Model_Builder_6(self): # one field and removing a field
+
+        field = ForeignKeyField_Builder('book', 'Book', on_delete="models.CASCADE", null=True)
+
+        model = Model_Builder('Test_Model', field)
+
+        self.assertEqual(str(model),'class Test_Model(models.Model):\n' + \
+                                    '\tbook = models.ForeignKey(Book,on_delete=models.CASCADE,null=True)\n'
+        )
+
+        model.remove_field(0)
+
+        self.assertEqual(str(model),'class Test_Model(models.Model):\n' + \
+                                    '\tpass\n'
+        )
 
 if __name__ == "__main__":
     unittest.main()

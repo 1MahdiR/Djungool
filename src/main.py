@@ -4,9 +4,13 @@
 #
 
 import sys
+import os
 
 from model_builder import *
 from menu_module import *
+
+if os.name == 'nt':
+    os.system("color")
 
 MODELS = []
 FIELD_PREFIX = False

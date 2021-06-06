@@ -57,6 +57,16 @@ def create_model_menu():
         print("Aborted!\n")
         return
 
+    for item in MODELS:
+        if model_name == item.name:
+            show_error()
+            print("This model is already created!")
+            print("Aborted!\n")
+            return
+
+    new_model = Model_Builder(model_name)
+    MODELS.append(new_model)
+
     print()
 
 def main():

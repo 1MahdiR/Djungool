@@ -1162,8 +1162,7 @@ class Model_Builder:
 
     def __init__(self,name,*fields):
         self.name = name
-        self.fields = list()
-        self.fields.extend(fields)
+        self.fields = list(fields)
 
     def add_field(self,field):
         self.fields.append(field)

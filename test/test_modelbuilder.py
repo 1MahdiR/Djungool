@@ -623,14 +623,116 @@ class TestFieldBuilderClasses(unittest.TestCase):
         'group = models.OneToOneField(Group,on_delete=models.CASCADE,related_name=\'group\')'
         )
 
+    def test_Model_Builder_1(self): # simple test
 
+        field = CharField_Builder(
+        'char_test', 32    
+        )
 
+        model = Model_Builder('Model_Test', field)
 
+        self.assertEqual(str(model),'class Model_Test(models.Model):\n' + \
+                                    '\tchar_test = models.CharField(max_length=32)\n'
+        )
 
+    def test_Model_Builder_2(self): # two fields and removing the first field
+
+        field_1 = CharField_Builder(
+        'field_1', 64    
+        )
+
+        field_2 = DateField_Builder(
+        'field_2'    
+        )
+
+        model = Model_Builder('_2_model_field', field_1, field_2)
+
+        self.assertEqual(str(model),'class _2_model_field(models.Model):\n' + \
+                                    '\tfield_1 = models.CharField(max_length=64)\n' + \
+                                    '\tfield_2 = models.DateField()\n'
+        )
+
+        model.remove_field(0) # removing first field (field_1)
+
+        self.assertEqual(str(model),'class _2_model_field(models.Model):\n' + \
+                                    '\tfield_2 = models.DateField()\n'
+        )
+    
+    def test_Model_Builder_3(self): # two fields and adding third field
+
+        field_1 = FloatField_Builder(
+        'floating', default=64.64
+        )
+
+        field_2 = DateField_Builder(
+        'date',null=True
+        )
+
+        model = Model_Builder('model_test_3', field_1, field_2)
+
+        self.assertEqual(str(model),'class model_test_3(models.Model):\n' + \
+                                    '\tfloating = models.FloatField(default=64.64)\n' + \
+                                    '\tdate = models.DateField(null=True)\n'
+        )
+
+        field_3 = BooleanField_Builder('my_bool', default=True)
+
+        model.add_field(field_3)
+
+        self.assertEqual(str(model),'class model_test_3(models.Model):\n' + \
+                                    '\tfloating = models.FloatField(default=64.64)\n' + \
+                                    '\tdate = models.DateField(null=True)\n' + \
+                                    '\tmy_bool = models.BooleanField(default=True)\n'
+        )
+
+    def test_Model_Builder_4(self): # four fields and removing then adding a field
         
+        field_1 = CharField_Builder(
+        'name', max_length=64
+        )
+        
+        field_2 = CharField_Builder(
+        'author', max_length=64
+        )
 
+        field_3 = CharField_Builder(
+        'genre', max_length=32
+        )
 
+        field_4 = DateField_Builder(
+        'pub_date'
+        )
 
+        model = Model_Builder('Book', field_1, field_2, field_3, field_4)
+
+        self.assertEqual(str(model),'class Book(models.Model):\n' + \
+                                    '\tname = models.CharField(max_length=64)\n' + \
+                                    '\tauthor = models.CharField(max_length=64)\n' + \
+                                    '\tgenre = models.CharField(max_length=32)\n' + \
+                                    '\tpub_date = models.DateField()\n'
+        )
+
+        model.remove_field(1) # removing secong field (author field)
+
+        self.assertEqual(str(model),'class Book(models.Model):\n' + \
+                                    '\tname = models.CharField(max_length=64)\n' + \
+                                    '\tgenre = models.CharField(max_length=32)\n' + \
+                                    '\tpub_date = models.DateField()\n'
+        )
+
+        new_field = ForeignKeyField_Builder(
+        'author','Author',on_delete='models.CASCADE',related_name='book',null=True
+        )
+
+        model.add_field(new_field)
+
+        self.assertEqual(str(model),'class Book(models.Model):\n' + \
+                                    '\tname = models.CharField(max_length=64)\n' + \
+                                    '\tgenre = models.CharField(max_length=32)\n' + \
+                                    '\tpub_date = models.DateField()\n' + \
+                                    '\tauthor = models.ForeignKey(Author,on_delete=models.CASCADE,related_name=\'book\',null=True)\n'
+        )
+        
 
 if __name__ == "__main__":
     unittest.main()

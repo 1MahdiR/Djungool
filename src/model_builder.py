@@ -1177,7 +1177,11 @@ class Model_Builder:
     def __str__(self):
         model_str = "class {model_name}(models.Model):\n".format(model_name=self.name)
 
-        for field in self.fields:
-            model_str += "\t{field}\n".format(field=field)
 
+        if self.fields:
+            for field in self.fields:
+                model_str += "\t{field}\n".format(field=field)
+        else:
+            model_str += "\tpass\n"
+    
         return model_str

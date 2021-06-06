@@ -16,6 +16,9 @@ CREATE_MODEL_NAME_PROMPT = "Enter a name for model: "
 def show_error():
     print("\033[1;31mError:\033[0;0m ", end="")
 
+def show_success():
+    print("\033[1;32mSuccess:\033[0;0m ", end="")
+
 def validate_name(name):
     valid_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
     
@@ -81,7 +84,11 @@ def create_model_menu():
             return
 
     new_model = Model_Builder(model_name)
+
+    print()
+    show_success()
     print("Created model '{}'\n".format(model_name))
+    
     MODELS.append(new_model)
 
 def main():

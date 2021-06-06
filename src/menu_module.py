@@ -33,7 +33,7 @@ def show_main_menu(models):
     print()
 
 def show_model_menu(model):
-    print("\nmodel: {}\n".format(model.name))
+    print("model: {}\n".format(model.name))
     show_fields(model.fields)
 
     print("- Add field ['a']")

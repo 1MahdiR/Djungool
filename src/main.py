@@ -13,6 +13,9 @@ FIELD_PREFIX = False
 MAIN_PROMPT = "Enter a command: "
 CREATE_MODEL_NAME_PROMPT = "Enter a name for model: "
 
+def show_error():
+    print("\033[1;31mError:\033[0;0m ", end="")
+
 def validate_name(name):
     valid_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
     
@@ -43,11 +46,13 @@ def create_model_menu():
     model_name = input(CREATE_MODEL_NAME_PROMPT)
 
     if not model_name: # If name isn't empty
+        show_error()
         print("Model name should contain at least a character!")
         print("Aborted!\n")
         return
 
     if validate_name(model_name) == False: # If name isn't validated return to main menu
+        show_error()
         print("Model name should match Python3 naming conventions!")
         print("Aborted!\n")
         return

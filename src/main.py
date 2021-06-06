@@ -68,20 +68,20 @@ def create_model_menu():
         show_error()
         print("Model name should contain at least a character!")
         print("Aborted!\n")
-        return
+        return False
 
     if validate_name(model_name) == False: # If name isn't validated return to main menu
         show_error()
         print("Model name should match Python3 naming conventions!")
         print("Aborted!\n")
-        return
+        return False
 
     for item in MODELS:
         if model_name == item.name:
             show_error()
             print("This model is already created!")
             print("Aborted!\n")
-            return
+            return False
 
     new_model = Model_Builder(model_name)
 
@@ -100,7 +100,10 @@ def main():
             print()
 
             if command == 'c': # Create model
-                create_model_menu()
+                
+                failed = create_model_menu()
+                if failed == False:
+                    continue
                 
                 while True:
                     command = modify_model_menu(MODELS[-1], len(MODELS)-1)

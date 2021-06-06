@@ -41,6 +41,22 @@ def main_menu():
         if user_input in valid_inputs:
             return user_input
 
+def modify_model_menu(model, index):
+
+    while True:
+        show_model_menu(model)
+
+        user_input = input(MAIN_PROMPT).lower()
+
+        valid_inputs = ['a','d','r','q']
+
+        FIELDS_INDICES = map(str, range(len(model.fields)))
+
+        valid_inputs.extend(FIELDS_INDICES)
+
+        if user_input in valid_inputs:
+            return user_input
+
 def create_model_menu():
         
     model_name = input(CREATE_MODEL_NAME_PROMPT)
@@ -65,9 +81,8 @@ def create_model_menu():
             return
 
     new_model = Model_Builder(model_name)
+    print("Created model '{}'\n".format(model_name))
     MODELS.append(new_model)
-
-    print()
 
 def main():
     try:
@@ -79,8 +94,20 @@ def main():
 
             if command == 'c': # Create model
                 create_model_menu()
+                
+                while True:
+                    command = modify_model_menu(MODELS[-1], len(MODELS)-1)
+                    
+                    if command == 'q':
+                        break
 
 
+                
+            elif command == 'q':
+                break
+
+        print('Bye!')
+        sys.exit(0)
 
     except KeyboardInterrupt:
         print('\nBye!')

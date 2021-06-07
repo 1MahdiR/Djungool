@@ -16,6 +16,8 @@ MODELS = []
 FIELD_PREFIX = False
 MAIN_PROMPT = "Enter a command: "
 CREATE_MODEL_NAME_PROMPT = "Enter a name for model: "
+ADD_FIELD_TYPE_PROMPT = "Enter a type [0-21]: "
+ADD_FIELD_NAME_PROMPT = "Enter a name for field: "
 
 def show_error():
     print("\033[1;31mError:\033[0;0m ", end="")
@@ -31,6 +33,9 @@ def validate_name(name):
             return False
 
     return False if name[0].isdigit() else True
+
+def validate_field_type_input(user_input):
+    return user_input.isdigit() and 0 <= int(user_input) <= 21
 
 def main_menu():
 
@@ -63,6 +68,36 @@ def modify_model_menu(model, index):
 
         if user_input in valid_inputs:
             return user_input
+
+def add_field_menu(model):
+
+    show_add_field_menu()
+
+    user_input = input(ADD_FIELD_TYPE_PROMPT)
+
+    if not user_input:
+        show_error()
+        print("Empty input!")
+        print("Aborted!\n")
+        return False
+
+    if not validate_field_type_input(user_input):
+        show_error()
+        print("Wrong input for index type field!")
+        print("Aborted!\n")
+        return False
+
+    field_type = user_input
+
+    user_input = input(ADD_FIELD_NAME_PROMPT)
+
+    if user_input:
+        show_error()
+        print("Field name should contain at least a character!")
+        print("Aborted!\n")
+        return False
+
+
 
 def create_model_menu():
         

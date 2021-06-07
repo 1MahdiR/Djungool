@@ -91,12 +91,17 @@ def add_field_menu(model):
 
     user_input = input(ADD_FIELD_NAME_PROMPT)
 
-    if user_input:
+    if not user_input:
         show_error()
         print("Field name should contain at least a character!")
         print("Aborted!\n")
         return False
 
+    if validate_name(user_input) == False:
+        show_error()
+        print("Field name should match Python3 naming conventions!")
+        print("Aborted!\n")
+        return False
 
 
 def create_model_menu():

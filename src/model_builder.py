@@ -114,7 +114,7 @@ class BooleanField_Builder:
         field = self._field
 
         default = ""
-        if self._default != None:
+        if self._default != None and self._default != '':
             default = "default={},".format(self._default)
 
         blank = ""
@@ -1183,5 +1183,5 @@ class Model_Builder:
                 model_str += "\t{field}\n".format(field=field)
         else:
             model_str += "\tpass\n"
-    
+
         return model_str

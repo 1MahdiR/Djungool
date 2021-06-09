@@ -8,6 +8,12 @@
 
 from model_builder import *
 
+def show_on_delete_actions():
+	models_show_str = ""
+	for (index, item) in enumerate(DJANGO_ON_DELETE_ACTIONS):
+		models_show_str += "\t{}: {}\n".format(index ,repr(item))
+	print("on delete: [\n{}]\n".format(models_show_str))
+
 ENTER_DEFAULT_VALUE_PROMPT = "Enter a default value (enter nothing for no default): "
 ENTER_MAX_LENGTH_PROMPT = "Enter a value for max length ({}): "
 ENTER_MAX_DIGIT_PROMPT = "Enter a value for max digit ({}): "
@@ -18,6 +24,9 @@ ENTER_UNIQUE_VALUE_PROMPT = "Set unique value to True? (y/N): "
 ENTER_DEFAULT_NOW_DATE_PROMPT = "Wanna set default function to 'timezone.now'? (y/N): "
 ENTER_DEFAULT_UUID_PROMPT = "Wanna set default uuid function to 'uuid.uuid4'? (y/N): "
 ENTER_UUID_PRIMARY_KEY_PROMPT = "Wanna set this field to be primary key? (y/N): "
+ENTER_TO_PROMPT = "What is the reference key for this field?: "
+ENTER_FOREIGN_KEY_ON_DELETE_PROMPT = "Set the 'on delete' value for field [0-5]: "
+ENTER_RELATED_NAME_PROMPT = "Enter a related name for your field: "
 
 def BigIntegerField_client(name):
 
@@ -532,7 +541,7 @@ def UUIDField_client(name):
 		default = ''
 
 	primary_key = input(ENTER_UUID_PRIMARY_KEY_PROMPT)
-	if primary_key.lowet() == 'y':
+	if primary_key.lower() == 'y':
 		primary_key = True
 	else:
 		primary_key = False
@@ -555,6 +564,92 @@ def UUIDField_client(name):
 	else:
 		unique = False
 
-	field = UUIDField_Builder(name,max_length,default,blank,null,unique)
+	field = UUIDField_Builder(name,primary_key,default,blank,null,unique)
+
+	return field
+
+def ForeignKey_client(name):
+
+	to = input(ENTER_TO_PROMPT)
+	if not to:
+		return
+
+	show_on_delete_actions()
+	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
+	if not (on_delete and on_delete.isdigit() and (0 > int(on_delete) or 5 > int(on_delete))):
+		return
+	else:
+		on_delete = DJANGO_ON_DELETE_ACTIONS[int(on_delete)]
+
+	related_name = input(ENTER_RELATED_NAME_PROMPT)
+
+	blank = input(ENTER_BLANK_VALUE_PROMPT)
+	if blank.lower() == 'y':
+		blank = True
+	else:
+		blank = False
+
+	null = input(ENTER_NULL_VALUE_PROMPT)
+	if null.lower() == 'y':
+		null = True
+	else:
+		null = False
+
+	field = ForeignKeyField_Builder(name,to,on_delete,blank,null)
+
+	return field
+
+def OneToOneField_client(name):
+
+	to = input(ENTER_TO_PROMPT)
+	if not to:
+		return
+
+	show_on_delete_actions()
+	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
+	if not (on_delete and on_delete.isdigit() and (0 > int(on_delete) or 5 > int(on_delete))):
+		return
+	else:
+		on_delete = DJANGO_ON_DELETE_ACTIONS[int(on_delete)]
+
+	related_name = input(ENTER_RELATED_NAME_PROMPT)
+
+	blank = input(ENTER_BLANK_VALUE_PROMPT)
+	if blank.lower() == 'y':
+		blank = True
+	else:
+		blank = False
+
+	null = input(ENTER_NULL_VALUE_PROMPT)
+	if null.lower() == 'y':
+		null = True
+	else:
+		null = False
+
+	field = OneToOneField_Builder(name,to,on_delete,blank,null)
+
+	return field
+
+def ManyToManyField_client(name):
+
+	to = input(ENTER_TO_PROMPT)
+	if not to:
+		return
+
+	related_name = input(ENTER_RELATED_NAME_PROMPT)
+
+	blank = input(ENTER_BLANK_VALUE_PROMPT)
+	if blank.lower() == 'y':
+		blank = True
+	else:
+		blank = False
+
+	null = input(ENTER_NULL_VALUE_PROMPT)
+	if null.lower() == 'y':
+		null = True
+	else:
+		null = False
+
+	field = ManyToManyField_Builder(name,to,blank,null)
 
 	return field

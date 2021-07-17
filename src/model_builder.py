@@ -13,7 +13,7 @@ DJANGO_FIELDS = [
     "ImageField",
     "IntegerField",
     "PositiveBigInteger",
-    "PositiveInteger"
+    "PositiveInteger",
     "PositiveSmallInteger",
     "SlugField",
     "SmallIntegerField",

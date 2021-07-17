@@ -35,7 +35,7 @@ def validate_name(name):
     return False if name[0].isdigit() else True
 
 def validate_field_type_input(user_input):
-    return user_input.isdigit() and 0 <= int(user_input) <= 21
+    return user_input.isdigit() and 0 <= int(user_input) <= 22
 
 def main_menu():
 

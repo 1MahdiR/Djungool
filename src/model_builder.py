@@ -750,6 +750,60 @@ class PositiveSmallIntegerField_Builder:
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
+class SlugField_Builder:
+    def __init__(self,name,unicode=False,default=None,blank=False,null=False,unique=False):
+        self._name = name
+        self._field = "models.SlugField"
+        self._unicode = unicode
+        self._default = default
+        self._blank = blank
+        self._null = null
+        self._unique = unique
+
+    def __repr__(self):
+        return "<field: <field_name: %s, field_type: %s>>" % (self._name, self._field)
+
+    def get_name(self):
+        return self._name
+
+    def get_field(self):
+        return self._field
+
+    def __str__(self):
+
+        name = self._name
+
+        field = self._field
+
+        default = ""
+        if self._default:
+            default = "default='{}',".format(self._default)
+
+        unicode = ""
+        if self._unicode:
+            unicode = "allow_unicode={},".format(self._unicode)
+
+        blank = ""
+        if self._blank:
+            blank = "blank={},".format(self._blank)
+
+        null = ""
+        if self._null:
+            null = "null={},".format(self._null)
+
+        unique = ""
+        if self._unique:
+            unique = "unique={}".format(self._unique)
+
+        param = "{unicode}{default}{blank}{null}{unique}".format(
+                unicode=unicode, default=default, blank=blank, null=null, unique=unique)
+
+        if param and param[-1] == ",":
+            param = param[:-1]
+
+        return "{name} = {field}({param})".format(
+                name=name, field=field, param=param)
+
 class SmallIntegerField_Builder:
 
     def __init__(self,name,default=None,blank=False,null=False,unique=False):

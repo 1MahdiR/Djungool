@@ -399,6 +399,34 @@ class TestFieldBuilderClasses(unittest.TestCase):
         'sml = models.PositiveSmallIntegerField(unique=True)'
         )
 
+    def test_SlugField_1(self):
+
+        field = SlugField_Builder(
+            'slug',True,'default-slug',null=True,blank=False
+        )
+
+        self.assertEqual(field.get_field(),
+        'models.SlugField'
+        )
+
+        self.assertEqual(str(field),
+        'slug = models.SlugField(allow_unicode=True,default=\'default-slug\',null=True)'
+        )
+
+    def test_SlugField_2(self):
+
+        field = SlugField_Builder(
+            'slug_field',True,null=True,blank=True,unique=True
+        )
+
+        self.assertEqual(field.get_field(),
+        'models.SlugField'
+        )
+
+        self.assertEqual(str(field),
+        'slug_field = models.SlugField(allow_unicode=True,blank=True,null=True,unique=True)'
+        )
+
     def test_SmallIntegerField_1(self):
 
         field = SmallIntegerField_Builder(

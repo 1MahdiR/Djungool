@@ -8,6 +8,7 @@ import os
 
 from model_builder import *
 from menu_module import *
+from field_menu import *
 
 if os.name == 'nt':
     os.system("color")
@@ -16,7 +17,7 @@ MODELS = []
 FIELD_PREFIX = False
 MAIN_PROMPT = "Enter a command: "
 CREATE_MODEL_NAME_PROMPT = "Enter a name for model: "
-ADD_FIELD_TYPE_PROMPT = "Enter a type [0-21]: "
+ADD_FIELD_TYPE_PROMPT = "Enter a type [0-22]: "
 ADD_FIELD_NAME_PROMPT = "Enter a name for field: "
 
 def show_error():
@@ -27,7 +28,7 @@ def show_success():
 
 def validate_name(name):
     valid_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
-    
+
     for i in name:
         if i not in valid_letters:
             return False
@@ -35,7 +36,7 @@ def validate_name(name):
     return False if name[0].isdigit() else True
 
 def validate_field_type_input(user_input):
-    return user_input.isdigit() and 0 <= int(user_input) <= 22
+    return user_input.isdigit() and 0 <= int(user_input) <= 21
 
 def main_menu():
 
@@ -103,9 +104,60 @@ def add_field_menu(model):
         print("Aborted!\n")
         return False
 
+    name = user_input
+    field = None
+
+    if field_type == '0':
+        field = BigIntegerField_client(name)
+    elif field_type == '1':
+        field = BooleanField_client(name)
+    elif field_type == '2':
+        field = CharField_client(name)
+    elif field_type == '3':
+        field = DateField_client(name)
+    elif field_type == '4':
+        field = DateTimeField_client(name)
+    elif field_type == '5':
+        field = DecimalField_client(name)
+    elif field_type == '6':
+        field = EmailField_client(name)
+    elif field_type == '7':
+        field = FileField_client(name)
+    elif field_type == '8':
+        field = FloatField_client(name)
+    elif field_type == '9':
+        field = ImageField_client(name)
+    elif field_type == '10':
+        field = IntegerField_client(name)
+    elif field_type == '11':
+        field = PositiveBigIntegerField_client(name)
+    elif field_type == '12':
+        field = PositiveIntegerField_client(name)
+    elif field_type == '13':
+        field = PositiveSmallIntegerField_client(name)
+    elif field_type == '14':
+        field = SlugField_client(name)
+    elif field_type == '15':
+        field = SmallIntegerField_client(name)
+    elif field_type == '16':
+        field = TextField_client(name)
+    elif field_type == '17':
+        field = URLField_client(name)
+    elif field_type == '18':
+        field = UUIDField_client(name)
+    elif field_type == '19':
+        field = UUIDField_client(name)
+    elif field_type == '20':
+        field = ForeignKey_client(name)
+    elif field_type == '21':
+        field = ManyToManyField_client(name)
+    elif field_type == '22':
+        field = OneToOneField_client(name)
+
+    model.add_field(field)
 
 def create_model_menu():
-        
+
     model_name = input(CREATE_MODEL_NAME_PROMPT)
 
     if not model_name: # If name isn't empty
@@ -132,7 +184,7 @@ def create_model_menu():
     print()
     show_success()
     print("Created model '{}'\n".format(model_name))
-    
+
     MODELS.append(new_model)
 
 def main():
@@ -144,19 +196,23 @@ def main():
             print()
 
             if command == 'c': # Create model
-                
+
                 failed = create_model_menu()
                 if failed == False:
                     continue
-                
+
                 while True:
+                    model = MODELS[-1]
                     command = modify_model_menu(MODELS[-1], len(MODELS)-1)
-                    
+
                     if command == 'q':
                         break
 
+                    if command == 'a':
+                        add_field_menu(model)
 
-                
+
+
             elif command == 'q':
                 break
 
@@ -168,6 +224,5 @@ def main():
         sys.exit(0)
 
 if __name__ == '__main__':
-    
-    main()
 
+    main()

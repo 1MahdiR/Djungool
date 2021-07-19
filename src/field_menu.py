@@ -27,6 +27,7 @@ ENTER_UUID_PRIMARY_KEY_PROMPT = "Wanna set this field to be primary key? (y/N): 
 ENTER_TO_PROMPT = "What is the reference key for this field?: "
 ENTER_FOREIGN_KEY_ON_DELETE_PROMPT = "Set the 'on delete' value for field [0-5]: "
 ENTER_RELATED_NAME_PROMPT = "Enter a related name for your field: "
+ENTER_UNICODE_ALLOWED_PROMPT = "Set unicode_allowed to True? (y/N): "
 
 def BigIntegerField_client(name):
 
@@ -417,6 +418,38 @@ def PositiveSmallIntegerField_client(name):
 		unique = False
 
 	field = PositiveSmallIntegerField_Builder(name,default,blank,null,unique)
+
+	return field
+
+def SlugField_client(name):
+
+	unicode = input(ENTER_UNICODE_ALLOWED_PROMPT)
+	if unicode.lower == 'y':
+		unicode = True
+	else:
+		unicode = False
+
+	default = input(ENTER_DEFAULT_VALUE_PROMPT)
+
+	blank = input(ENTER_BLANK_VALUE_PROMPT)
+	if blank.lower() == 'y':
+		blank = True
+	else:
+		blank = False
+
+	null = input(ENTER_NULL_VALUE_PROMPT)
+	if null.lower() == 'y':
+		null = True
+	else:
+		null = False
+
+	unique = input(ENTER_UNIQUE_VALUE_PROMPT)
+	if unique.lower() == 'y':
+		unique = True
+	else:
+		unique = False
+
+	field = SlugField_Builder(name,unicode,default,blank,null,unique)
 
 	return field
 

@@ -1,7 +1,7 @@
 
-from model_builder import DJANGO_FIELDS, \
-                          DJANGO_RELATION_FIELDS, \
-                          DJANGO_ON_DELETE_ACTIONS
+from static_data.model_builder_statics import DJANGO_FIELDS, \
+                                            DJANGO_RELATION_FIELDS, \
+                                            DJANGO_ON_DELETE_ACTIONS
 
 def show_models(models):
     if models:
@@ -40,17 +40,6 @@ def show_model_menu(model):
     print("- Rename model ['r']")
     print("- Return from model menu ['q']")
     print()
-
-def show_add_field_menu():
-
-    types = DJANGO_FIELDS.copy()
-    types.extend(DJANGO_RELATION_FIELDS)
-
-    types_show_str = ""
-    for (index, item) in enumerate(types):
-        types_show_str += "\t{}: {}\n".format(index, item)
-
-    print("field types: [\n{}]\n".format(types_show_str))
 
 def show_field_types():
     items = list()

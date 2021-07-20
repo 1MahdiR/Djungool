@@ -3,8 +3,6 @@ from model_builder import DJANGO_FIELDS, \
                           DJANGO_RELATION_FIELDS, \
                           DJANGO_ON_DELETE_ACTIONS
 
-VERSION = "v0.2.6"
-
 def show_models(models):
     if models:
         models_show_str = ""

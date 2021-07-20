@@ -1,3 +1,5 @@
+from model_builder_statics import DJANGO_FIELDS, DJANGO_RELATION_FIELDS
+
 # field_menu prompts
 ENTER_DEFAULT_VALUE_PROMPT = "Enter a default value (enter nothing for no default): "
 ENTER_MAX_LENGTH_PROMPT = "Enter a value for max length ({}): "
@@ -17,5 +19,5 @@ ENTER_UNICODE_ALLOWED_PROMPT = "Set unicode_allowed to True? (y/N): "
 # main prompts
 MAIN_PROMPT = "Enter a command: "
 CREATE_MODEL_NAME_PROMPT = "Enter a name for model: "
-ADD_FIELD_TYPE_PROMPT = "Enter a type [0-22]: "
+ADD_FIELD_TYPE_PROMPT = "Enter a type [0-%d]: " % (len(DJANGO_FIELDS) + len(DJANGO_RELATION_FIELDS) - 1)
 ADD_FIELD_NAME_PROMPT = "Enter a name for field: "

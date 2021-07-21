@@ -22,6 +22,7 @@ def show_fields(fields):
         print("fields: [\n\tStill no field\n]\n")
 
 def show_main_menu(models):
+    print()
     show_models(models)
 
     print("- Create model ['c']")
@@ -31,6 +32,7 @@ def show_main_menu(models):
     print()
 
 def show_model_menu(model):
+    print()
     print("model: {}\n".format(model.name))
     show_fields(model.fields)
 
@@ -38,6 +40,7 @@ def show_model_menu(model):
     print("- Delete a field [enter an index of fields]")
     print("- Delete model ['d']")
     print("- Rename model ['r']")
+    print("- Print model ['p']")
     print("- Return from model menu ['q']")
     print()
 

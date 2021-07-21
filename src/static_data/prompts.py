@@ -1,4 +1,4 @@
-from model_builder_statics import DJANGO_FIELDS, DJANGO_RELATION_FIELDS
+from static_data.model_builder_statics import DJANGO_FIELDS, DJANGO_RELATION_FIELDS
 
 # field_menu prompts
 ENTER_DEFAULT_VALUE_PROMPT = "Enter a default value (enter nothing for no default): "

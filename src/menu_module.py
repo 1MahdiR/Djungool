@@ -52,3 +52,9 @@ def show_field_types():
         types_show_str += "\t{}: {}\n".format(index, item)
 
     print("field type: [\n{}]\n".format(types_show_str))
+
+def show_on_delete_actions():
+	models_show_str = ""
+	for (index, item) in enumerate(DJANGO_ON_DELETE_ACTIONS):
+		models_show_str += "\t{}: {}\n".format(index ,repr(item))
+	print("on delete: [\n{}]\n".format(models_show_str))

@@ -31,13 +31,13 @@ def main_menu():
         user_input = input(MAIN_PROMPT).lower()
 
         if user_input in valid_inputs:
-            if user_input == 'c':
+            if user_input == 'c': # create new model
                 pass
-            elif user_input == 'e':
+            elif user_input == 'e': # export models.py
                 pass
-            elif user_input == 'q':
+            elif user_input == 'q': # exit from main_menu
                 return
-            else:
+            else: # selecting models
                 pass
 
 if __name__ == '__main__':
@@ -47,5 +47,5 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         pass
-        
+
     print("\nBye")

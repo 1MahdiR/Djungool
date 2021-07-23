@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.3.9
+# Django-modeler v0.4.1
 # By Ray (__mr__)
 #
 
@@ -141,8 +141,8 @@ def add_field(model):
 
     model.add_field(field)
 
-def delete_model():
-    pass
+def delete_model(model):
+    MODELS.remove(model)
 
 def show_model():
     pass
@@ -168,7 +168,8 @@ def select_model(index):
             if user_input == 'a':   # add new field
                 add_field(model)
             elif user_input == 'd': # delete model
-                pass
+                delete_model(model)
+                return
             elif user_input == 'r': # rename model
                 pass
             elif user_input == 'p': # show model

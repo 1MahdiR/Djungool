@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.4.9
+# Django-modeler v0.5.3
 # By Ray (__mr__)
 #
 
@@ -53,7 +53,25 @@ def create_new_model():
     select_model(-1) # selecting the last model that was added
 
 def export_models():
-    pass
+    if os.path.isfile('models.py'):
+        user_input = input(MODELS_PY_ALREADY_EXIST_PROMPT)
+        if user_input.lower() != 'y':
+            print("Aborted!\n")
+            return
+    try:
+        with open('models.py', 'w') as file:
+            file.write("from django.db import models\n\n")
+            for model in MODELS:
+                file.write(str(model))
+                file.write("\n")
+
+        show_success()
+        print("Models exported to 'models.py'.")
+
+    except PermissionError:
+        show_error()
+        print("Permission error! You do not have the permission to write a file.")
+        print("Aborted!\n")
 
 def add_field(model):
     show_field_types()
@@ -229,7 +247,7 @@ def main_menu():
             if user_input == 'c':   # create new model
                 create_new_model()
             elif user_input == 'e': # export models.py
-                pass
+                export_models()
             elif user_input == 'q': # exit from main_menu
                 return
             else:                   # selecting models

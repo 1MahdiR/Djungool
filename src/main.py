@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.3.2
+# Django-modeler v0.3.4
 # By Ray (__mr__)
 #
 
@@ -49,6 +49,8 @@ def create_new_model():
 
     MODELS.append(new_model)
 
+    select_model(-1) # selecting the last model that was added
+
 def export_models():
     pass
 
@@ -65,7 +67,11 @@ def delete_field():
     pass
 
 def select_model(index):
-    model = MODELS[index]
+    try:
+        model = MODELS[index]
+    except IndexError:
+        return
+
     valid_inputs = ['a','d','r','p','q']
     FIELDS_INDICES = map(str, range(len(model.fields)))
     valid_inputs.extend(FIELDS_INDICES)

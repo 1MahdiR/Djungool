@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.4.7
+# Django-modeler v0.4.9
 # By Ray (__mr__)
 #
 
@@ -178,8 +178,11 @@ def show_model(model):
     print(model)
     print("*" * 32, end="\n\n")
 
-def delete_field():
-    pass
+def delete_field(model, index):
+    try:
+        model.remove_field(index)
+    except IndexError:
+        pass
 
 def select_model(index):
     try:
@@ -208,7 +211,9 @@ def select_model(index):
             elif user_input == 'q': # return to main menu
                 return
             else:                   # delete field
-                pass
+                if user_input.isdigit():
+                    index = int(user_input)
+                    delete_field(model, index)
 
 def main_menu():
     valid_inputs = ['c', 'e', 'q']

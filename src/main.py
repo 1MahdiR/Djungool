@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.3.6
+# Django-modeler v0.3.9
 # By Ray (__mr__)
 #
 
@@ -54,8 +54,92 @@ def create_new_model():
 def export_models():
     pass
 
-def add_field():
-    pass
+def add_field(model):
+    show_field_types()
+
+    # choosing field type
+    user_input = input(ADD_FIELD_TYPE_PROMPT)
+
+    if not user_input:
+        show_error()
+        print("Empty input!")
+        print("Aborted!\n")
+        return False
+
+    if not validate_field_type_input(user_input):
+        show_error()
+        print("Wrong input for index type field!")
+        print("Aborted!\n")
+        return False
+
+    field_type = user_input
+
+    # choosing field name
+    user_input = input(ADD_FIELD_NAME_PROMPT)
+
+    if not user_input:
+        show_error()
+        print("Field name should contain at least a character!")
+        print("Aborted!\n")
+        return False
+
+    if validate_name(user_input) == False:
+        show_error()
+        print("Field name should match Python3 naming conventions!")
+        print("Aborted!\n")
+        return False
+
+    name = user_input
+    field = None
+
+    if field_type == '0':
+        field = BigIntegerField_client(name)
+    elif field_type == '1':
+        field = BooleanField_client(name)
+    elif field_type == '2':
+        field = CharField_client(name)
+    elif field_type == '3':
+        field = DateField_client(name)
+    elif field_type == '4':
+        field = DateTimeField_client(name)
+    elif field_type == '5':
+        field = DecimalField_client(name)
+    elif field_type == '6':
+        field = EmailField_client(name)
+    elif field_type == '7':
+        field = FileField_client(name)
+    elif field_type == '8':
+        field = FloatField_client(name)
+    elif field_type == '9':
+        field = ImageField_client(name)
+    elif field_type == '10':
+        field = IntegerField_client(name)
+    elif field_type == '11':
+        field = PositiveBigIntegerField_client(name)
+    elif field_type == '12':
+        field = PositiveIntegerField_client(name)
+    elif field_type == '13':
+        field = PositiveSmallIntegerField_client(name)
+    elif field_type == '14':
+        field = SlugField_client(name)
+    elif field_type == '15':
+        field = SmallIntegerField_client(name)
+    elif field_type == '16':
+        field = TextField_client(name)
+    elif field_type == '17':
+        field = URLField_client(name)
+    elif field_type == '18':
+        field = UUIDField_client(name)
+    elif field_type == '19':
+        field = UUIDField_client(name)
+    elif field_type == '20':
+        field = ForeignKey_client(name)
+    elif field_type == '21':
+        field = ManyToManyField_client(name)
+    elif field_type == '22':
+        field = OneToOneField_client(name)
+
+    model.add_field(field)
 
 def delete_model():
     pass
@@ -82,7 +166,7 @@ def select_model(index):
         user_input = input(MAIN_PROMPT).lower()
         if user_input in valid_inputs:
             if user_input == 'a':   # add new field
-                pass
+                add_field(model)
             elif user_input == 'd': # delete model
                 pass
             elif user_input == 'r': # rename model

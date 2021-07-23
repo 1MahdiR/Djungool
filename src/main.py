@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.4.1
+# Django-modeler v0.4.4
 # By Ray (__mr__)
 #
 
@@ -144,6 +144,33 @@ def add_field(model):
 def delete_model(model):
     MODELS.remove(model)
 
+def rename_model(model):
+    model_name = input(CREATE_MODEL_NAME_PROMPT)
+
+    if not model_name: # If name isn't empty
+        show_error()
+        print("Model name should contain at least a character!")
+        print("Aborted!\n")
+        return False
+
+    if validate_name(model_name) == False: # If name isn't validated return to main menu
+        show_error()
+        print("Model name should match Python3 naming conventions!")
+        print("Aborted!\n")
+        return False
+
+    for item in MODELS:
+        if model_name == item.name:
+            show_error()
+            print("This model is already created!")
+            print("Aborted!\n")
+            return False
+
+    model.name = model_name
+    print()
+    show_success()
+    print("Renamed model to '{}'\n".format(model_name))
+
 def show_model():
     pass
 
@@ -171,7 +198,7 @@ def select_model(index):
                 delete_model(model)
                 return
             elif user_input == 'r': # rename model
-                pass
+                rename_model(model)
             elif user_input == 'p': # show model
                 pass
             elif user_input == 'q': # return to main menu

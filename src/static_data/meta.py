@@ -1,2 +1,2 @@
-VERSION = "v0.4.1"
+VERSION = "v0.4.4"
 BANNER = "\nDjango-modeler (%s)\nWritten by Ray (__mr__)\n\n" % VERSION

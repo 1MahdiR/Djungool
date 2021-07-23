@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.4.5
+# Django-modeler v0.4.7
 # By Ray (__mr__)
 #
 
@@ -172,8 +172,11 @@ def rename_model(model):
     show_success()
     print("Renamed model to '{}'\n".format(model_name))
 
-def show_model():
-    pass
+def show_model(model):
+    print()
+    print("*" * 32, end="\n\n")
+    print(model)
+    print("*" * 32, end="\n\n")
 
 def delete_field():
     pass
@@ -201,7 +204,7 @@ def select_model(index):
             elif user_input == 'r': # rename model
                 rename_model(model)
             elif user_input == 'p': # show model
-                pass
+                show_model(model)
             elif user_input == 'q': # return to main menu
                 return
             else:                   # delete field

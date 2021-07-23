@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.4.4
+# Django-modeler v0.4.5
 # By Ray (__mr__)
 #
 
@@ -25,6 +25,7 @@ def create_new_model():
     model_name = input(CREATE_MODEL_NAME_PROMPT)
 
     if not model_name: # If name isn't empty
+        show_error()
         print("Model name should contain at least a character!")
         print("Aborted!\n")
         return False

@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.3.4
+# Django-modeler v0.3.5
 # By Ray (__mr__)
 #
 
@@ -73,10 +73,11 @@ def select_model(index):
         return
 
     valid_inputs = ['a','d','r','p','q']
-    FIELDS_INDICES = map(str, range(len(model.fields)))
-    valid_inputs.extend(FIELDS_INDICES)
 
     while True:
+        FIELDS_INDICES = map(str, range(len(model.fields)))
+        valid_inputs.extend(FIELDS_INDICES)
+
         show_model_menu(model)
         user_input = input(MAIN_PROMPT).lower()
         if user_input in valid_inputs:
@@ -95,10 +96,11 @@ def select_model(index):
 
 def main_menu():
     valid_inputs = ['c', 'e', 'q']
-    MODELS_INDICES = map(str, range(len(MODELS)))
-    valid_inputs.extend(MODELS_INDICES)
 
     while True:
+        MODELS_INDICES = map(str, range(len(MODELS)))
+        valid_inputs.extend(MODELS_INDICES)
+
         show_main_menu(MODELS)
         user_input = input(MAIN_PROMPT).lower()
 

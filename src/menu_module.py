@@ -27,7 +27,7 @@ def show_main_menu(models):
 
     print("- Create model ['c']")
     print("- Modify a model [enter an index of models]")
-    print("- Export model.py ['e']")
+    print("- Export models.py ['e']")
     print("- Quit ['q']")
     print()
 

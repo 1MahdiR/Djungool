@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.3.5
+# Django-modeler v0.3.6
 # By Ray (__mr__)
 #
 
@@ -112,7 +112,7 @@ def main_menu():
             elif user_input == 'q': # exit from main_menu
                 return
             else:                   # selecting models
-                pass
+                select_model(int(user_input))
 
 if __name__ == '__main__':
     print(BANNER)

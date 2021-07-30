@@ -785,5 +785,31 @@ class TestFieldBuilderClasses(unittest.TestCase):
                                     '\tpass\n'
         )
 
+    def test_Model_Builder_7(self): # testing get_field function
+
+        field_1 = CharField_Builder(
+        'name', max_length=64
+        )
+
+        field_2 = CharField_Builder(
+        'author', max_length=64
+        )
+
+        field_3 = CharField_Builder(
+        'genre', max_length=32
+        )
+
+        model = Model_Builder('Book', field_1, field_2, field_3)
+
+        self.assertEqual(field_1, model.get_field(0))
+        self.assertEqual(field_2, model.get_field(1))
+        self.assertEqual(field_3, model.get_field(2))
+    
+    def test_Model_Builder_8(self): # testing get_field with invalid index
+
+        model = Model_Builder('Test_model')
+
+        self.assertRaises(IndexError, model.get_field, 0)
+
 if __name__ == "__main__":
     unittest.main()

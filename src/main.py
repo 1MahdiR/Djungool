@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.5.4
+# Django-modeler v0.5.6
 # By Ray (__mr__)
 #
 

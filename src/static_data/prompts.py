@@ -22,3 +22,5 @@ CREATE_MODEL_NAME_PROMPT = "Enter a name for model: "
 ADD_FIELD_TYPE_PROMPT = "Enter a type [0-%d]: " % (len(DJANGO_FIELDS) + len(DJANGO_RELATION_FIELDS) - 1)
 ADD_FIELD_NAME_PROMPT = "Enter a name for field: "
 MODELS_PY_ALREADY_EXIST_PROMPT = "'models.py' already exists. Do you want to overwrite it? (y/N): "
+FIELD_DELETE_CONFIRMATION_PROMPT = "Are you sure you want to delete this field? (y/N): "
+MODEL_DELETE_CONFIRMATION_PROMPT = "Are you sure you want to delete this model? (y/N): "

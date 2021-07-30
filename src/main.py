@@ -198,6 +198,11 @@ def show_model(model):
 
 def delete_field(model, index):
     try:
+        field = model.get_field(index)
+        print("\n",field,"\n",sep="")
+        reply = input(FIELD_DELETE_CONFIRMATION_PROMPT)
+        if reply.lower() != 'y':
+            return
         model.remove_field(index)
     except IndexError:
         pass

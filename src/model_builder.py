@@ -1182,8 +1182,12 @@ class Model_Builder:
     def add_field(self,field):
         self.fields.append(field)
 
+    def get_field(self, index):
+        # index should be validated before it get passed to the function
+        return self.fields[index]
+
     def remove_field(self,index):
-        # index should be validated befor it get passed to the function
+        # index should be validated before it get passed to the function
         self.fields.remove(self.fields[index])
 
     def __repr__(self):

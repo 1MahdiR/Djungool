@@ -13,7 +13,7 @@ A terminal tool for creating models.py files which include django models.
 
 ## Todo list for project:
 
-- [ ] Add confirmations for deleting models and fields
+- [X] Add confirmations for deleting models and fields
 - [ ] Add reset model option in main menu
 - [ ] Work on user interface a little bit
 - [ ] Work on check_models function
@@ -38,4 +38,3 @@ Project Link: [https://github.com/1MahdiR/django-modeler](https://github.com/1Ma
 ---
 
 ⭐ Please give me a star if this repo was helpful for you
-

@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.6.9
+# Django-modeler v0.7.3
 # By Ray (__mr__)
 #
 
@@ -222,6 +222,16 @@ def show_model(model):
     print_seperator()
     print('\n')
 
+def remove_all_fields(model):
+    print()
+    reply = input(RESET_ALL_FIELDS_PROMPT)
+    if reply.lower() != 'y':
+        return
+    for i in range(len(model.fields)):
+        model.remove_field(0)
+    show_success()
+    print("Reset was successful\n")
+
 def delete_field(model, index):
     try:
         field = model.get_field(index)
@@ -239,7 +249,7 @@ def select_model(index):
     except IndexError:
         return
 
-    valid_inputs = ['a','d','r','p','q']
+    valid_inputs = ['a','d','r','p','q','k']
 
     while True:
         FIELDS_INDICES = map(str, range(len(model.fields)))
@@ -257,6 +267,8 @@ def select_model(index):
                 rename_model(model)
             elif user_input == 'p': # show model
                 show_model(model)
+            elif user_input == 'k':
+                remove_all_fields(model)
             elif user_input == 'q': # return to main menu
                 return
             else:                   # delete field

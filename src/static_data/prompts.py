@@ -25,3 +25,4 @@ MODELS_PY_ALREADY_EXIST_PROMPT = "'models.py' already exists. Do you want to ove
 FIELD_DELETE_CONFIRMATION_PROMPT = "Are you sure you want to delete this field? (y/N): "
 MODEL_DELETE_CONFIRMATION_PROMPT = "Are you sure you want to delete this model? (y/N): "
 RESET_ALL_MODELS_PROMPT = "Are you sure you want to reset everything?\nThis will delete all models. (y/N): "
+RESET_ALL_FIELDS_PROMPT = "Are you sure you want to reset this model?\nThis will delete all fields of this model. (y/N): "

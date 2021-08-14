@@ -42,6 +42,7 @@ def show_model_menu(model):
     print("- Delete model ['d']")
     print("- Rename model ['r']")
     print("- Print model ['p']")
+    print("- Reset model ['k']")
     print("- Return from model menu ['q']")
     print()
 

@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.5.8
+# Django-modeler v0.6.0
 # By Ray (__mr__)
 #
 
@@ -107,6 +107,13 @@ def add_field(model):
         print("Field name should match Python3 naming conventions!")
         print("Aborted!\n")
         return False
+
+    for item in model.fields:
+        if user_input == item.get_name():
+            show_error()
+            print("This field is already created!")
+            print("Aborted!\n")
+            return False
 
     name = user_input
     field = None

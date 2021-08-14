@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.6.0
+# Django-modeler v0.6.5
 # By Ray (__mr__)
 #
 
@@ -72,6 +72,16 @@ def export_models():
         show_error()
         print("Permission error! You do not have the permission to write a file.")
         print("Aborted!\n")
+
+def remove_all_models():
+    print()
+    reply = input(RESET_ALL_MODELS_PROMPT)
+    if reply.lower() != 'y':
+        return
+    for i in range(len(MODELS)):
+        del(MODELS[0])
+    show_success()
+    print("Reset was successful\n")
 
 def add_field(model):
     show_field_types()
@@ -253,7 +263,7 @@ def select_model(index):
                     delete_field(model, index)
 
 def main_menu():
-    valid_inputs = ['c', 'e', 'q']
+    valid_inputs = ['c', 'e', 'q', 'k']
 
     while True:
         MODELS_INDICES = map(str, range(len(MODELS)))
@@ -267,6 +277,8 @@ def main_menu():
                 create_new_model()
             elif user_input == 'e': # export models.py
                 export_models()
+            elif user_input == 'k': # reset everything
+                remove_all_models()
             elif user_input == 'q': # exit from main_menu
                 return
             else:                   # selecting models

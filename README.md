@@ -14,7 +14,7 @@ A terminal tool for creating models.py files which include django models.
 ## Todo list for project:
 
 - [X] Add confirmations for deleting models and fields
-- [ ] Add reset model option in main menu
+- [X] Add reset model option in main menu
 - [ ] Work on user interface a little bit
 - [ ] Work on check_models function
 - [ ] Add check_model function on export models function

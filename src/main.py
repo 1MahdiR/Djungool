@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.6.5
+# Django-modeler v0.6.9
 # By Ray (__mr__)
 #
 
@@ -216,9 +216,11 @@ def rename_model(model):
 
 def show_model(model):
     print()
-    print("*" * 32, end="\n\n")
+    print_seperator()
+    print('\n')
     print(model)
-    print("*" * 32, end="\n\n")
+    print_seperator()
+    print('\n')
 
 def delete_field(model, index):
     try:

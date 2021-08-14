@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.5.6
+# Django-modeler v0.5.8
 # By Ray (__mr__)
 #
 
@@ -161,7 +161,14 @@ def add_field(model):
     model.add_field(field)
 
 def delete_model(model):
-    MODELS.remove(model)
+    try:
+        print("\n",model,"\n",sep="")
+        reply = input(MODEL_DELETE_CONFIRMATION_PROMPT)
+        if reply.lower() != 'y':
+            return
+        MODELS.remove(model)
+    except ValueError:
+        pass
 
 def rename_model(model):
     model_name = input(CREATE_MODEL_NAME_PROMPT)
@@ -225,8 +232,8 @@ def select_model(index):
             if user_input == 'a':   # add new field
                 add_field(model)
             elif user_input == 'd': # delete model
-                delete_model(model)
-                return
+                if delete_model(model):
+                    return
             elif user_input == 'r': # rename model
                 rename_model(model)
             elif user_input == 'p': # show model

@@ -7,6 +7,9 @@ def show_error():
 def show_success():
     print("\033[1;32mSuccess:\033[0;0m ", end="")
 
+def print_seperator():
+    print("\033[1;32m" + ('*' * 32) + "\033[0;0m ", end="")
+
 def validate_name(name):
     valid_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 

@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.7.8
+# Django-modeler v0.8.0
 # By Ray (__mr__)
 #
 
@@ -189,6 +189,11 @@ def add_field(model):
 
     model.add_field(field)
 
+    print()
+    show_success()
+    print("New field '{}' has been added!\n".format(name))
+    print_seperator()
+
 def delete_model(model):
     try:
         print("\n",model,"\n",sep="")
@@ -257,6 +262,12 @@ def delete_field(model, index):
         if reply.lower() != 'y':
             return
         model.remove_field(index)
+
+        print()
+        show_success()
+        print("Field '{}' has been deleted!\n".format(field.get_name()))
+        print_seperator()
+
     except IndexError:
         pass
 

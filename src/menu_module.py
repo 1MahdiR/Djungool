@@ -2,6 +2,7 @@
 from static_data.model_builder_statics import DJANGO_FIELDS, \
                                             DJANGO_RELATION_FIELDS, \
                                             DJANGO_ON_DELETE_ACTIONS
+from utility import print_in_box
 
 def show_models(models):
     if models:
@@ -34,7 +35,8 @@ def show_main_menu(models):
 
 def show_model_menu(model):
     print()
-    print("model: {}\n".format(model.name))
+    print_in_box("model: {}".format(model.name))
+    print()
     show_fields(model.fields)
 
     print("- Add field ['a']")

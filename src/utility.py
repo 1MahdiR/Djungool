@@ -7,6 +7,9 @@ def show_error():
 def show_success():
     print("\033[1;32mSuccess:\033[0;0m ", end="")
 
+def show_warning():
+    print("\033[1;33mWarning:\033[0;0m ", end="")
+
 def print_seperator():
     print("\033[1;32m" + ('*' * 32) + "\033[0;0m ", end="")
 

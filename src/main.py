@@ -81,11 +81,14 @@ def export_models():
 
 def remove_all_models():
     print()
+    show_warning()
     reply = input(RESET_ALL_MODELS_PROMPT)
     if reply.lower() != 'y':
         return
     for i in range(len(MODELS)):
         del(MODELS[0])
+
+    print()
     show_success()
     print("Reset was successful\n")
     print_seperator()
@@ -197,6 +200,7 @@ def add_field(model):
 def delete_model(model):
     try:
         print("\n",model,"\n",sep="")
+        show_warning()
         reply = input(MODEL_DELETE_CONFIRMATION_PROMPT)
         if reply.lower() != 'y':
             return
@@ -253,11 +257,14 @@ def show_model(model):
 
 def remove_all_fields(model):
     print()
+    show_warning()
     reply = input(RESET_ALL_FIELDS_PROMPT)
     if reply.lower() != 'y':
         return
     for i in range(len(model.fields)):
         model.remove_field(0)
+
+    print()
     show_success()
     print("Reset was successful\n")
     print_seperator()
@@ -266,6 +273,7 @@ def delete_field(model, index):
     try:
         field = model.get_field(index)
         print("\n",field,"\n",sep="")
+        show_warning()
         reply = input(FIELD_DELETE_CONFIRMATION_PROMPT)
         if reply.lower() != 'y':
             return

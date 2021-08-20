@@ -8,6 +8,7 @@
 
 from model_builder import *
 from static_data.prompts import *
+from static_data.model_builder_statics import DJANGO_ON_DELETE_ACTIONS
 from menu_module import show_on_delete_actions
 
 def BigIntegerField_client(name):

@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.7.3
+# Django-modeler v0.7.5
 # By Ray (__mr__)
 #
 
@@ -28,12 +28,14 @@ def create_new_model():
         show_error()
         print("Model name should contain at least a character!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     if validate_name(model_name) == False: # If name isn't validated return to main menu
         show_error()
         print("Model name should match Python3 naming conventions!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     for item in MODELS:
@@ -41,12 +43,14 @@ def create_new_model():
             show_error()
             print("This model is already created!")
             print("Aborted!\n")
+            print_seperator()
             return False
 
     new_model = Model_Builder(model_name)
     print()
     show_success()
     print("Created model '{}'\n".format(model_name))
+    print_seperator()
 
     MODELS.append(new_model)
 
@@ -67,11 +71,13 @@ def export_models():
 
         show_success()
         print("Models exported to 'models.py'.")
+        print_seperator()
 
     except PermissionError:
         show_error()
         print("Permission error! You do not have the permission to write a file.")
         print("Aborted!\n")
+        print_seperator()
 
 def remove_all_models():
     print()
@@ -82,6 +88,7 @@ def remove_all_models():
         del(MODELS[0])
     show_success()
     print("Reset was successful\n")
+    print_seperator()
 
 def add_field(model):
     show_field_types()
@@ -93,12 +100,14 @@ def add_field(model):
         show_error()
         print("Empty input!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     if not validate_field_type_input(user_input):
         show_error()
         print("Wrong input for index type field!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     field_type = user_input
@@ -110,12 +119,14 @@ def add_field(model):
         show_error()
         print("Field name should contain at least a character!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     if validate_name(user_input) == False:
         show_error()
         print("Field name should match Python3 naming conventions!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     for item in model.fields:
@@ -123,6 +134,7 @@ def add_field(model):
             show_error()
             print("This field is already created!")
             print("Aborted!\n")
+            print_seperator()
             return False
 
     name = user_input
@@ -194,12 +206,14 @@ def rename_model(model):
         show_error()
         print("Model name should contain at least a character!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     if validate_name(model_name) == False: # If name isn't validated return to main menu
         show_error()
         print("Model name should match Python3 naming conventions!")
         print("Aborted!\n")
+        print_seperator()
         return False
 
     for item in MODELS:
@@ -207,12 +221,14 @@ def rename_model(model):
             show_error()
             print("This model is already created!")
             print("Aborted!\n")
+            print_seperator()
             return False
 
     model.name = model_name
     print()
     show_success()
     print("Renamed model to '{}'\n".format(model_name))
+    print_seperator()
 
 def show_model(model):
     print()
@@ -231,6 +247,7 @@ def remove_all_fields(model):
         model.remove_field(0)
     show_success()
     print("Reset was successful\n")
+    print_seperator()
 
 def delete_field(model, index):
     try:

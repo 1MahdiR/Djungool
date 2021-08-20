@@ -1191,7 +1191,7 @@ class Model_Builder:
         self.fields.remove(self.fields[index])
 
     def __repr__(self):
-        return "<model: <model_name: %s, model_fields_count: %d>>" % (self.name, len(self.fields))
+        return "\033[0;33m<model: <model_name: \033[1;33m%s\033[0;33m, model_fields_count: \033[1;33m%d\033[0;33m>>\033[0;0m" % (self.name, len(self.fields))
 
     def __str__(self):
         model_str = "class {model_name}(models.Model):\n".format(model_name=self.name)

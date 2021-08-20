@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.8.0
+# Django-modeler v0.8.1
 # By Ray (__mr__)
 #
 
@@ -201,6 +201,14 @@ def delete_model(model):
         if reply.lower() != 'y':
             return
         MODELS.remove(model)
+
+        print()
+        show_success()
+        print("Model '{}' has been deleted!\n".format(model.name))
+        print_seperator()
+
+        return True # return to main menu
+
     except ValueError:
         pass
 

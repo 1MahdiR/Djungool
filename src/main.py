@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.8.4
+# Django-modeler v0.8.7
 # By Ray (__mr__)
 #
 
@@ -190,7 +190,15 @@ def add_field(model):
     elif field_type == '22':
         field = OneToOneField_client(name)
 
-    model.add_field(field)
+    # TODO: must raise an exception
+    if field:
+        model.add_field(field)
+    else:
+        print()
+        show_error()
+        print("Something went wrong!\n".format(name))
+        print_seperator()
+        return
 
     print()
     show_success()

@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.7.5
+# Django-modeler v0.7.8
 # By Ray (__mr__)
 #
 
@@ -175,9 +175,9 @@ def add_field(model):
     elif field_type == '16':
         field = TextField_client(name)
     elif field_type == '17':
-        field = URLField_client(name)
+        field = TimeField_client(name)
     elif field_type == '18':
-        field = UUIDField_client(name)
+        field = URLField_client(name)
     elif field_type == '19':
         field = UUIDField_client(name)
     elif field_type == '20':

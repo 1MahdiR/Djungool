@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.8.9
+# Django-modeler v0.9.0
 # By Ray (__mr__)
 #
 
@@ -261,6 +261,7 @@ def show_model(model):
     print(model)
     print_seperator()
     print('\n')
+    input()
 
 def remove_all_fields(model):
     print()

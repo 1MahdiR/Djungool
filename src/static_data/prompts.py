@@ -13,7 +13,7 @@ ENTER_DEFAULT_UUID_PROMPT = "Wanna set default uuid function to 'uuid.uuid4'? (y
 ENTER_UUID_PRIMARY_KEY_PROMPT = "Wanna set this field to be primary key? (y/N): "
 ENTER_TO_PROMPT = "What is the reference key for this field?: "
 ENTER_FOREIGN_KEY_ON_DELETE_PROMPT = "Set the 'on delete' value for field [0-5]: "
-ENTER_RELATED_NAME_PROMPT = "Enter a related name for your field: "
+ENTER_RELATED_NAME_PROMPT = "Enter a related name for your field (enter nothing for default): "
 ENTER_UNICODE_ALLOWED_PROMPT = "Set unicode_allowed to True? (y/N): "
 
 # main prompts

@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.9.0
+# Django-modeler v0.9.3
 # By Ray (__mr__)
 #
 
@@ -310,23 +310,27 @@ def select_model(index):
         show_model_menu(model)
         user_input = input(MAIN_PROMPT).lower()
         if user_input in valid_inputs:
-            if user_input == 'a':   # add new field
-                add_field(model)
-            elif user_input == 'd': # delete model
-                if delete_model(model):
+            try:
+                if user_input == 'a':   # add new field
+                    add_field(model)
+                elif user_input == 'd': # delete model
+                    if delete_model(model):
+                        return
+                elif user_input == 'r': # rename model
+                    rename_model(model)
+                elif user_input == 'p': # show model
+                    show_model(model)
+                elif user_input == 'k':
+                    remove_all_fields(model)
+                elif user_input == 'q': # return to main menu
                     return
-            elif user_input == 'r': # rename model
-                rename_model(model)
-            elif user_input == 'p': # show model
-                show_model(model)
-            elif user_input == 'k':
-                remove_all_fields(model)
-            elif user_input == 'q': # return to main menu
-                return
-            else:                   # delete field
-                if user_input.isdigit():
-                    index = int(user_input)
-                    delete_field(model, index)
+                else:                   # delete field
+                    if user_input.isdigit():
+                        index = int(user_input)
+                        delete_field(model, index)
+
+            except KeyboardInterrupt:
+                print("\nAborted!\n")
 
 def main_menu():
     valid_inputs = ['c', 'e', 'q', 'k']

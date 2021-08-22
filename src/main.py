@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.8.7
+# Django-modeler v0.8.9
 # By Ray (__mr__)
 #
 
@@ -143,62 +143,61 @@ def add_field(model):
     name = user_input
     field = None
 
-    if field_type == '0':
+    if field_type == '0': #BigIntegerField_client
         field = BigIntegerField_client(name)
-    elif field_type == '1':
+    elif field_type == '1': #BooleanField_client
         field = BooleanField_client(name)
-    elif field_type == '2':
+    elif field_type == '2': #CharField_client
         field = CharField_client(name)
-    elif field_type == '3':
+    elif field_type == '3': #DateField_client
         field = DateField_client(name)
-    elif field_type == '4':
+    elif field_type == '4': #DateTimeField_client
         field = DateTimeField_client(name)
-    elif field_type == '5':
+    elif field_type == '5': #DecimalField_client
         field = DecimalField_client(name)
-    elif field_type == '6':
+    elif field_type == '6': #EmailField_client
         field = EmailField_client(name)
-    elif field_type == '7':
+    elif field_type == '7': #FileField_client
         field = FileField_client(name)
-    elif field_type == '8':
+    elif field_type == '8': #FloatField_client
         field = FloatField_client(name)
-    elif field_type == '9':
+    elif field_type == '9': #ImageField_client
         field = ImageField_client(name)
-    elif field_type == '10':
+    elif field_type == '10': #IntegerField_client
         field = IntegerField_client(name)
-    elif field_type == '11':
+    elif field_type == '11': #PositiveBigIntegerField_client
         field = PositiveBigIntegerField_client(name)
-    elif field_type == '12':
+    elif field_type == '12': #PositiveIntegerField_client
         field = PositiveIntegerField_client(name)
-    elif field_type == '13':
+    elif field_type == '13': #PositiveSmallIntegerField_client
         field = PositiveSmallIntegerField_client(name)
-    elif field_type == '14':
+    elif field_type == '14': #SlugField_client
         field = SlugField_client(name)
-    elif field_type == '15':
+    elif field_type == '15': #SmallIntegerField_client
         field = SmallIntegerField_client(name)
-    elif field_type == '16':
+    elif field_type == '16': #TextField_client
         field = TextField_client(name)
-    elif field_type == '17':
+    elif field_type == '17': #TimeField_client
         field = TimeField_client(name)
-    elif field_type == '18':
+    elif field_type == '18': #URLField_client
         field = URLField_client(name)
-    elif field_type == '19':
+    elif field_type == '19': #UUIDField_client
         field = UUIDField_client(name)
-    elif field_type == '20':
-        field = ForeignKey_client(name)
+    elif field_type == '20': #ForeignKey_client
+        try:
+            field = ForeignKey_client(name)
+        except IndexError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '21':
         field = ManyToManyField_client(name)
     elif field_type == '22':
         field = OneToOneField_client(name)
 
-    # TODO: must raise an exception
     if field:
         model.add_field(field)
-    else:
-        print()
-        show_error()
-        print("Something went wrong!\n".format(name))
-        print_seperator()
-        return
 
     print()
     show_success()

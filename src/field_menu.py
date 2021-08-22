@@ -597,6 +597,8 @@ def ForeignKey_client(name):
 		on_delete = DJANGO_ON_DELETE_ACTIONS[int(on_delete)]
 
 	related_name = input(ENTER_RELATED_NAME_PROMPT)
+	if not related_name.strip():
+		related_name = None
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
@@ -610,7 +612,7 @@ def ForeignKey_client(name):
 	else:
 		null = False
 
-	field = ForeignKeyField_Builder(name,to,on_delete,blank,null)
+	field = ForeignKeyField_Builder(name,to,on_delete,related_name,blank,null)
 
 	return field
 

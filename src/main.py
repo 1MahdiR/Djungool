@@ -62,6 +62,12 @@ def export_models():
         if user_input.lower() != 'y':
             print("Aborted!\n")
             return
+    else:
+        show_error()
+        print("'models.py' is not a regular file!")
+        print("Aborted!\n")
+        print_seperator()
+
     try:
         with open('models.py', 'w') as file:
             file.write("from django.db import models\n\n")

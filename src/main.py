@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.9.3
+# Django-modeler v0.9.5
 # By Ray (__mr__)
 #
 
@@ -154,7 +154,13 @@ def add_field(model):
     elif field_type == '1': #BooleanField_client
         field = BooleanField_client(name)
     elif field_type == '2': #CharField_client
-        field = CharField_client(name)
+        try:
+            field = CharField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '3': #DateField_client
         field = DateField_client(name)
     elif field_type == '4': #DateTimeField_client

@@ -68,8 +68,15 @@ def CharField_client(name):
 	default = input(ENTER_DEFAULT_VALUE_PROMPT)
 
 	max_length = input(ENTER_MAX_LENGTH_PROMPT.format(32))
+
 	if not max_length:
 		max_length = 32
+
+	if not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
+
+	if int(max_length) < 1:
+		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':

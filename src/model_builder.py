@@ -979,11 +979,10 @@ class UUIDField_Builder(Field_Builder):
 
 class ManyToManyField_Builder(Field_Builder):
 
-    def __init__(self,name,to,to_app,related_name=None,blank=False,null=False):
+    def __init__(self,name,to,related_name=None,blank=False,null=False):
         self._name = name
         self._field = "models.ManyToManyField"
         self._to = to
-        self._to_app = to_app
         self._related_name = related_name
         self._blank = blank
         self._null = null
@@ -1025,11 +1024,10 @@ class ManyToManyField_Builder(Field_Builder):
 
 class ForeignKeyField_Builder(Field_Builder):
 
-    def __init__(self,name,to,to_app,on_delete,related_name=None,blank=False,null=False):
+    def __init__(self,name,to,on_delete,related_name=None,blank=False,null=False):
         self._name = name
         self._field = "models.ForeignKey"
         self._to = to
-        self._to_app = to_app
         self._on_delete = on_delete
         self._related_name = related_name
         self._blank = blank
@@ -1074,11 +1072,10 @@ class ForeignKeyField_Builder(Field_Builder):
 
 class OneToOneField_Builder(Field_Builder):
 
-    def __init__(self,name,to,to_app,on_delete,related_name=None,blank=False,null=False):
+    def __init__(self,name,to,on_delete,related_name=None,blank=False,null=False):
         self._name = name
         self._field = "models.OneToOneField"
         self._to = to
-        self._to_app
         self._on_delete = on_delete
         self._related_name = related_name
         self._blank = blank

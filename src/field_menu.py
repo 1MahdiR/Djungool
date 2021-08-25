@@ -614,7 +614,11 @@ def ForeignKey_client(name):
 	key_length = len(key)
 
 	if key_length > 2:
-		raise ValueError("Invalid input!")
+		for word in key:
+			if not validate_name(word):
+				raise ValueError("Invalid input!")
+		app_name = ".".join(key[:-1])
+		model = key[-1]
 	elif key_length == 2:
 		app_name, model = key
 		if not (validate_name(model) and validate_name(app_name)):

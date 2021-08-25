@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.9.9
+# Django-modeler v1.0.2
 # By Ray (__mr__)
 #
 
@@ -56,6 +56,22 @@ def create_new_model():
     MODELS.append(new_model)
 
     select_model(-1) # selecting the last model that was added
+
+def check_model(model):
+
+    for field in model.fields:
+        field_type = field.get_field()
+        if field_type == "models.DateField" or field_type == "models.DateTimeField" or field_type == "models.TimeField":
+            if field._default == "timezone.now":
+                IMPORT_OPTIONS.append("from django.utils import timezone")
+
+        if field_type == "models.UUIDField":
+            if field._default == "uuid.uuid4":
+                IMPORT_OPTIONS.append("import uuid")
+
+        if field_type == "models.ForeignKey" or field_type == "models.OneToOneField" or field_type == "models.ManyToManyField":
+            if field._to_app:
+                IMPORT_OPTIONS.append("from {}.models import {}".format(field._to_app, field._to))
 
 def export_models():
     if os.path.isfile('models.py'):

@@ -1,5 +1,5 @@
 #
-# Django-modeler v1.0.2
+# Django-modeler v1.0.5
 # By Ray (__mr__)
 #
 
@@ -20,7 +20,7 @@ if os.name == 'nt':
     os.system("color")
 
 MODELS = list()
-IMPORT_OPTIONS = list()
+IMPORT_OPTIONS = dict()
 
 def create_new_model():
     model_name = input(CREATE_MODEL_NAME_PROMPT)
@@ -63,15 +63,15 @@ def check_model(model):
         field_type = field.get_field()
         if field_type == "models.DateField" or field_type == "models.DateTimeField" or field_type == "models.TimeField":
             if field._default == "timezone.now":
-                IMPORT_OPTIONS.append("from django.utils import timezone")
+                IMPORT_OPTIONS['timezone'] = "from django.utils import timezone"
 
         if field_type == "models.UUIDField":
             if field._default == "uuid.uuid4":
-                IMPORT_OPTIONS.append("import uuid")
+                IMPORT_OPTIONS['uuid'] = "import uuid"
 
         if field_type == "models.ForeignKey" or field_type == "models.OneToOneField" or field_type == "models.ManyToManyField":
             if field._to_app:
-                IMPORT_OPTIONS.append("from {}.models import {}".format(field._to_app, field._to))
+                IMPORT_OPTIONS[field._to_app + ':' + field._to] = "from {}.models import {}".format(field._to_app, field._to)
 
 def export_models():
     if os.path.isfile('models.py'):
@@ -79,15 +79,22 @@ def export_models():
         if user_input.lower() != 'y':
             print("Aborted!\n")
             return
-    else:
+    elif os.path.exists('models.py'):
         show_error()
         print("'models.py' is not a regular file!")
         print("Aborted!\n")
         print_seperator()
+        return
+
+    IMPORT_OPTIONS['django.db'] = "from django.db import models"
+    for model in MODELS:
+        check_model(model)
 
     try:
         with open('models.py', 'w') as file:
-            file.write("from django.db import models\n\n")
+            for key in IMPORT_OPTIONS.keys():
+                file.write(IMPORT_OPTIONS[key] + "\n")
+
             for model in MODELS:
                 file.write(str(model))
                 file.write("\n")
@@ -220,17 +227,17 @@ def add_field(model):
             print(e)
             print_seperator()
             return
-    elif field_type == '21':
+    elif field_type == '21': #ManyToManyField_client
         try:
-            field = ForeignKey_client(name)
+            field = ManyToManyField_client(name)
         except (IndexError, ValueError) as e:
             show_error()
             print(e)
             print_seperator()
             return
-    elif field_type == '22':
+    elif field_type == '22': #OneToOneField_client
         try:
-            field = ForeignKey_client(name)
+            field = OneToOneField_client(name)
         except (IndexError, ValueError) as e:
             show_error()
             print(e)

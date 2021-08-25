@@ -10,6 +10,7 @@ from model_builder import *
 from static_data.prompts import *
 from static_data.model_builder_statics import DJANGO_ON_DELETE_ACTIONS
 from menu_module import show_on_delete_actions
+from utility import validate_name
 
 def BigIntegerField_client(name):
 
@@ -594,7 +595,23 @@ def ForeignKey_client(name):
 
 	to = input(ENTER_TO_PROMPT)
 	if not to:
-		return
+		raise ValueError("Reference key should match Python3 naming conventions!")
+
+	key = to.split('.')
+	app_name = ""
+	model = ""
+	key_length = len(key)
+
+	if key_length > 2:
+		raise ValueError("Invalid input!")
+	elif key_length == 2:
+		app_name, model = key
+		if not (validate_name(model) and validate_name(app_name)):
+			raise ValueError("Reference key should match Python3 naming conventions!")
+	else:
+		model = key[0]
+		if not validate_name(model):
+			raise ValueError("Reference key should match Python3 naming conventions!")
 
 	show_on_delete_actions()
 	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
@@ -619,7 +636,7 @@ def ForeignKey_client(name):
 	else:
 		null = False
 
-	field = ForeignKeyField_Builder(name,to,on_delete,related_name,blank,null)
+	field = ForeignKeyField_Builder(name,model,app_name,on_delete,related_name,blank,null)
 
 	return field
 
@@ -627,7 +644,23 @@ def OneToOneField_client(name):
 
 	to = input(ENTER_TO_PROMPT)
 	if not to:
-		return
+		raise ValueError("Reference key should match Python3 naming conventions!")
+
+	key = to.split('.')
+	app_name = ""
+	model = ""
+	key_length = len(key)
+
+	if key_length > 2:
+		raise ValueError("Invalid input!")
+	elif key_length == 2:
+		app_name, model = key
+		if not (validate_name(model) and validate_name(app_name)):
+			raise ValueError("Reference key should match Python3 naming conventions!")
+	else:
+		model = key[0]
+		if not validate_name(model):
+			raise ValueError("Reference key should match Python3 naming conventions!")
 
 	show_on_delete_actions()
 	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
@@ -658,7 +691,23 @@ def ManyToManyField_client(name):
 
 	to = input(ENTER_TO_PROMPT)
 	if not to:
-		return
+		raise ValueError("Reference key should match Python3 naming conventions!")
+
+	key = to.split('.')
+	app_name = ""
+	model = ""
+	key_length = len(key)
+
+	if key_length > 2:
+		raise ValueError("Invalid input!")
+	elif key_length == 2:
+		app_name, model = key
+		if not (validate_name(model) and validate_name(app_name)):
+			raise ValueError("Reference key should match Python3 naming conventions!")
+	else:
+		model = key[0]
+		if not validate_name(model):
+			raise ValueError("Reference key should match Python3 naming conventions!")
 
 	related_name = input(ENTER_RELATED_NAME_PROMPT)
 

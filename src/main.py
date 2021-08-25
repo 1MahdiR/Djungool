@@ -1,5 +1,5 @@
 #
-# Django-modeler v0.9.5
+# Django-modeler v0.9.9
 # By Ray (__mr__)
 #
 
@@ -20,6 +20,7 @@ if os.name == 'nt':
     os.system("color")
 
 MODELS = list()
+IMPORT_OPTIONS = list()
 
 def create_new_model():
     model_name = input(CREATE_MODEL_NAME_PROMPT)
@@ -198,15 +199,27 @@ def add_field(model):
     elif field_type == '20': #ForeignKey_client
         try:
             field = ForeignKey_client(name)
-        except IndexError as e:
+        except (IndexError, ValueError) as e:
             show_error()
             print(e)
             print_seperator()
             return
     elif field_type == '21':
-        field = ManyToManyField_client(name)
+        try:
+            field = ForeignKey_client(name)
+        except (IndexError, ValueError) as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '22':
-        field = OneToOneField_client(name)
+        try:
+            field = ForeignKey_client(name)
+        except (IndexError, ValueError) as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
 
     if field:
         model.add_field(field)

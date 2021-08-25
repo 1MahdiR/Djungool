@@ -2,7 +2,7 @@
 
 ## About the project
 
-A terminal tool for creating models.py files which include django models.
+A CLI tool for automating programming **models.py** files which include django models.
 
 ## How to use
 
@@ -18,6 +18,8 @@ A terminal tool for creating models.py files which include django models.
 - [X] Work on user interface a little bit
 - [X] Work on check_models function
 - [X] Add check_model function on export models function
+- [ ] Add 'upload_to' property to 'ImageField' and 'FileField'
+- [ ] Add choice making for fields (like CharField)
 
 ## Contact
 
@@ -37,4 +39,4 @@ Project Link: [https://github.com/1MahdiR/django-modeler](https://github.com/1Ma
 
 ---
 
-⭐ Please give me a star if this repo was helpful for you
+⭐ Please give a star if this repo was helpful for you

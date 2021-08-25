@@ -72,8 +72,7 @@ def CharField_client(name):
 
 	if not max_length:
 		max_length = 32
-
-	if not max_length.isdigit() or '.' in max_length:
+	elif not max_length.isdigit() or '.' in max_length:
 		raise ValueError("Invalid input!")
 
 	if int(max_length) < 1:
@@ -200,8 +199,11 @@ def EmailField_client(name):
 	default = input(ENTER_DEFAULT_VALUE_PROMPT)
 
 	max_length = input(ENTER_MAX_LENGTH_PROMPT.format(254))
+
 	if not max_length:
 		max_length = 254
+	elif not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
@@ -228,8 +230,11 @@ def EmailField_client(name):
 def FileField_client(name):
 
 	max_length = input(ENTER_MAX_LENGTH_PROMPT.format(100))
+
 	if not max_length:
 		max_length = 100
+	elif not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
@@ -282,8 +287,11 @@ def FloatField_client(name):
 def ImageField_client(name):
 
 	max_length = input(ENTER_MAX_LENGTH_PROMPT.format(100))
+
 	if not max_length:
 		max_length = 100
+	elif not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
@@ -530,8 +538,11 @@ def URLField_client(name):
 	default = input(ENTER_DEFAULT_VALUE_PROMPT)
 
 	max_length = input(ENTER_MAX_LENGTH_PROMPT.format(200))
+
 	if not max_length:
 		max_length = 200
+	elif not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':

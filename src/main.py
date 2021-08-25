@@ -1,5 +1,5 @@
 #
-# Django-modeler v1.0.5
+# Django-modeler v1.1.0
 # By Ray (__mr__)
 #
 
@@ -192,13 +192,31 @@ def add_field(model):
     elif field_type == '5': #DecimalField_client
         field = DecimalField_client(name)
     elif field_type == '6': #EmailField_client
-        field = EmailField_client(name)
+        try:
+            field = EmailField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '7': #FileField_client
-        field = FileField_client(name)
+        try:
+            field = FileField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '8': #FloatField_client
         field = FloatField_client(name)
     elif field_type == '9': #ImageField_client
-        field = ImageField_client(name)
+        try:
+            field = ImageField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '10': #IntegerField_client
         field = IntegerField_client(name)
     elif field_type == '11': #PositiveBigIntegerField_client
@@ -216,7 +234,13 @@ def add_field(model):
     elif field_type == '17': #TimeField_client
         field = TimeField_client(name)
     elif field_type == '18': #URLField_client
-        field = URLField_client(name)
+        try:
+            field = URLField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '19': #UUIDField_client
         field = UUIDField_client(name)
     elif field_type == '20': #ForeignKey_client

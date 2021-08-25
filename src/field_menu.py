@@ -205,6 +205,9 @@ def EmailField_client(name):
 	elif not max_length.isdigit() or '.' in max_length:
 		raise ValueError("Invalid input!")
 
+	if int(max_length) < 1:
+		raise ValueError("Invalid input!")
+
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
 		blank = True
@@ -234,6 +237,9 @@ def FileField_client(name):
 	if not max_length:
 		max_length = 100
 	elif not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
+
+	if int(max_length) < 1:
 		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
@@ -291,6 +297,9 @@ def ImageField_client(name):
 	if not max_length:
 		max_length = 100
 	elif not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
+
+	if int(max_length) < 1:
 		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
@@ -542,6 +551,9 @@ def URLField_client(name):
 	if not max_length:
 		max_length = 200
 	elif not max_length.isdigit() or '.' in max_length:
+		raise ValueError("Invalid input!")
+
+	if int(max_length) < 1:
 		raise ValueError("Invalid input!")
 
 	blank = input(ENTER_BLANK_VALUE_PROMPT)

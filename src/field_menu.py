@@ -630,7 +630,7 @@ def ForeignKey_client(name):
 
 	show_on_delete_actions()
 	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
-	if not (on_delete and on_delete.isdigit() and (0 > int(on_delete) or 5 > int(on_delete))):
+	if not (on_delete and on_delete.isdigit() and (0 > int(on_delete) or 6 > int(on_delete))):
 		raise IndexError("Wrong input for index on delete actions!\nAborted!\n")
 	else:
 		on_delete = DJANGO_ON_DELETE_ACTIONS[int(on_delete)]
@@ -679,7 +679,7 @@ def OneToOneField_client(name):
 
 	show_on_delete_actions()
 	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
-	if not (on_delete and on_delete.isdigit() and (0 > int(on_delete) or 5 > int(on_delete))):
+	if not (on_delete and on_delete.isdigit() and (0 > int(on_delete) or 6 > int(on_delete))):
 		return
 	else:
 		on_delete = DJANGO_ON_DELETE_ACTIONS[int(on_delete)]

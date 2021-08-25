@@ -608,25 +608,29 @@ def ForeignKey_client(name):
 	if not to:
 		raise ValueError("Reference key should match Python3 naming conventions!")
 
-	key = to.split('.')
+	key = to.split(':')
 	app_name = ""
 	model = ""
 	key_length = len(key)
 
 	if key_length > 2:
-		for word in key:
-			if not validate_name(word):
-				raise ValueError("Invalid input!")
-		app_name = ".".join(key[:-1])
-		model = key[-1]
+		raise ValueError("Reference key should match Python3 naming conventions!")
 	elif key_length == 2:
+		app_name_key = key[0].split('.')
+		for word in app_name_key:
+			if not validate_name(word):
+				raise ValueError("Reference key should match Python3 naming conventions!")
+		app_name = ".".join(app_name_key)
+		model = key[1]
 		app_name, model = key
-		if not (validate_name(model) and validate_name(app_name)):
+		if not validate_name(model):
 			raise ValueError("Reference key should match Python3 naming conventions!")
 	else:
 		model = key[0]
 		if not validate_name(model):
 			raise ValueError("Reference key should match Python3 naming conventions!")
+		if model == "self":
+			model = "\'self\'"
 
 	show_on_delete_actions()
 	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
@@ -661,21 +665,29 @@ def OneToOneField_client(name):
 	if not to:
 		raise ValueError("Reference key should match Python3 naming conventions!")
 
-	key = to.split('.')
+	key = to.split(':')
 	app_name = ""
 	model = ""
 	key_length = len(key)
 
 	if key_length > 2:
-		raise ValueError("Invalid input!")
+		raise ValueError("Reference key should match Python3 naming conventions!")
 	elif key_length == 2:
+		app_name_key = key[0].split('.')
+		for word in app_name_key:
+			if not validate_name(word):
+				raise ValueError("Reference key should match Python3 naming conventions!")
+		app_name = ".".join(app_name_key)
+		model = key[1]
 		app_name, model = key
-		if not (validate_name(model) and validate_name(app_name)):
+		if not validate_name(model):
 			raise ValueError("Reference key should match Python3 naming conventions!")
 	else:
 		model = key[0]
 		if not validate_name(model):
 			raise ValueError("Reference key should match Python3 naming conventions!")
+		if model == "self":
+			model = "\'self\'"
 
 	show_on_delete_actions()
 	on_delete = input(ENTER_FOREIGN_KEY_ON_DELETE_PROMPT)
@@ -698,7 +710,7 @@ def OneToOneField_client(name):
 	else:
 		null = False
 
-	field = OneToOneField_Builder(name,to,on_delete,blank,null)
+	field = OneToOneField_Builder(name,model,app_name,on_delete,related_name,blank,null)
 
 	return field
 
@@ -708,21 +720,29 @@ def ManyToManyField_client(name):
 	if not to:
 		raise ValueError("Reference key should match Python3 naming conventions!")
 
-	key = to.split('.')
+	key = to.split(':')
 	app_name = ""
 	model = ""
 	key_length = len(key)
 
 	if key_length > 2:
-		raise ValueError("Invalid input!")
+		raise ValueError("Reference key should match Python3 naming conventions!")
 	elif key_length == 2:
+		app_name_key = key[0].split('.')
+		for word in app_name_key:
+			if not validate_name(word):
+				raise ValueError("Reference key should match Python3 naming conventions!")
+		app_name = ".".join(app_name_key)
+		model = key[1]
 		app_name, model = key
-		if not (validate_name(model) and validate_name(app_name)):
+		if not validate_name(model):
 			raise ValueError("Reference key should match Python3 naming conventions!")
 	else:
 		model = key[0]
 		if not validate_name(model):
 			raise ValueError("Reference key should match Python3 naming conventions!")
+		if model == "self":
+			model = "\'self\'"
 
 	related_name = input(ENTER_RELATED_NAME_PROMPT)
 
@@ -738,6 +758,6 @@ def ManyToManyField_client(name):
 	else:
 		null = False
 
-	field = ManyToManyField_Builder(name,to,blank,null)
+	field = ManyToManyField_Builder(name,model,app_name,related_name,blank,null)
 
 	return field

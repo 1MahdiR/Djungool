@@ -302,6 +302,7 @@ class DecimalField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
+# TODO: Add max_length validation
 class EmailField_Builder(Field_Builder):
 
     def __init__(self,name,max_length=254,default=None,blank=False,null=False,unique=False):
@@ -352,6 +353,8 @@ class EmailField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
+# TODO: Adding 'upload_to' property
+# TODO: Adding max_length validation
 class FileField_Builder(Field_Builder):
 
     def __init__(self,name,max_length=100,blank=False,null=False,unique=False):
@@ -444,6 +447,8 @@ class FloatField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
+# TODO: Adding 'upload_to' property
+# TODO: Adding max_length validation
 class ImageField_Builder(Field_Builder):
 
     def __init__(self,name,max_length=100,blank=False,null=False,unique=False):
@@ -869,6 +874,7 @@ class TimeField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
+# TODO: Add max_length validation
 class URLField_Builder(Field_Builder):
 
     def __init__(self,name,max_length=200,default=None,blank=False,null=False,unique=False):
@@ -973,10 +979,11 @@ class UUIDField_Builder(Field_Builder):
 
 class ManyToManyField_Builder(Field_Builder):
 
-    def __init__(self,name,to,related_name=None,blank=False,null=False):
+    def __init__(self,name,to,to_app,related_name=None,blank=False,null=False):
         self._name = name
         self._field = "models.ManyToManyField"
         self._to = to
+        self._to_app = to_app
         self._related_name = related_name
         self._blank = blank
         self._null = null
@@ -1018,10 +1025,11 @@ class ManyToManyField_Builder(Field_Builder):
 
 class ForeignKeyField_Builder(Field_Builder):
 
-    def __init__(self,name,to,on_delete,related_name=None,blank=False,null=False):
+    def __init__(self,name,to,to_app,on_delete,related_name=None,blank=False,null=False):
         self._name = name
         self._field = "models.ForeignKey"
         self._to = to
+        self._to_app = to_app
         self._on_delete = on_delete
         self._related_name = related_name
         self._blank = blank
@@ -1066,10 +1074,11 @@ class ForeignKeyField_Builder(Field_Builder):
 
 class OneToOneField_Builder(Field_Builder):
 
-    def __init__(self,name,to,on_delete,related_name=None,blank=False,null=False):
+    def __init__(self,name,to,to_app,on_delete,related_name=None,blank=False,null=False):
         self._name = name
         self._field = "models.OneToOneField"
         self._to = to
+        self._to_app
         self._on_delete = on_delete
         self._related_name = related_name
         self._blank = blank

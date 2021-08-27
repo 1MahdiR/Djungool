@@ -5,6 +5,7 @@ ENTER_DEFAULT_VALUE_PROMPT = "Enter a default value (enter nothing for no defaul
 ENTER_MAX_LENGTH_PROMPT = "Enter a value for max length ({}): "
 ENTER_MAX_DIGIT_PROMPT = "Enter a value for max digit ({}): "
 ENTER_DECIMAL_PLACES_PROMPT = "Enter a value for decimal places ({}): "
+ENTER_UPLOAD_TO_PROMPT = "Enter a path in MEDITA_ROOT to save files (enter nothing for default): "
 ENTER_BLANK_VALUE_PROMPT = "Set blank value to True? (y/N): "
 ENTER_NULL_VALUE_PROMPT = "Set null value to True? (y/N): "
 ENTER_UNIQUE_VALUE_PROMPT = "Set unique value to True? (y/N): "

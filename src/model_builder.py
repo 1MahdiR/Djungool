@@ -379,7 +379,7 @@ class FileField_Builder(Field_Builder):
 
         upload_to = ""
         if self._upload_to:
-            upload_to = "upload_to={},".format(self._upload_to)
+            upload_to = "upload_to='{}',".format(self._upload_to)
 
         blank = ""
         if self._blank:
@@ -476,7 +476,7 @@ class ImageField_Builder(Field_Builder):
 
         upload_to = ""
         if self._upload_to:
-            upload_to = "upload_to={},".format(self._upload_to)
+            upload_to = "upload_to='{}',".format(self._upload_to)
 
         blank = ""
         if self._blank:

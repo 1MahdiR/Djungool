@@ -302,7 +302,6 @@ class DecimalField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
-# TODO: Add max_length validation
 class EmailField_Builder(Field_Builder):
 
     def __init__(self,name,max_length=254,default=None,blank=False,null=False,unique=False):
@@ -353,14 +352,13 @@ class EmailField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
-# TODO: Adding 'upload_to' property
-# TODO: Adding max_length validation
 class FileField_Builder(Field_Builder):
 
-    def __init__(self,name,max_length=100,blank=False,null=False,unique=False):
+    def __init__(self,name,max_length=100,upload_to=None,blank=False,null=False,unique=False):
         self._name = name
         self._field = "models.FileField"
         self._max_length = max_length
+        self._upload_to = upload_to
         self._blank = blank
         self._null = null
         self._unique = unique
@@ -379,6 +377,10 @@ class FileField_Builder(Field_Builder):
 
         max_length = "max_length={},".format(self._max_length)
 
+        upload_to = ""
+        if self._upload_to:
+            upload_to = "upload_to={},".format(self._upload_to)
+
         blank = ""
         if self._blank:
             blank = "blank={},".format(self._blank)
@@ -391,8 +393,8 @@ class FileField_Builder(Field_Builder):
         if self._unique:
             unique = "unique={}".format(self._unique)
 
-        param = "{max_length}{blank}{null}{unique}".format(
-                max_length=max_length, blank=blank, null=null, unique=unique)
+        param = "{max_length}{upload_to}{blank}{null}{unique}".format(
+                max_length=max_length, upload_to=upload_to, blank=blank, null=null, unique=unique)
 
         if param and param[-1] == ",":
             param = param[:-1]
@@ -447,14 +449,13 @@ class FloatField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
-# TODO: Adding 'upload_to' property
-# TODO: Adding max_length validation
 class ImageField_Builder(Field_Builder):
 
-    def __init__(self,name,max_length=100,blank=False,null=False,unique=False):
+    def __init__(self,name,max_length=100,upload_to=None,blank=False,null=False,unique=False):
         self._name = name
         self._field = "models.ImageField"
         self._max_length = max_length
+        self._upload_to = upload_to
         self._blank = blank
         self._null = null
         self._unique = unique
@@ -473,6 +474,10 @@ class ImageField_Builder(Field_Builder):
 
         max_length = "max_length={},".format(self._max_length)
 
+        upload_to = ""
+        if self._upload_to:
+            upload_to = "upload_to={},".format(self._upload_to)
+
         blank = ""
         if self._blank:
             blank = "blank={},".format(self._blank)
@@ -485,8 +490,8 @@ class ImageField_Builder(Field_Builder):
         if self._unique:
             unique = "unique={}".format(self._unique)
 
-        param = "{max_length}{blank}{null}{unique}".format(
-                max_length=max_length, blank=blank, null=null, unique=unique)
+        param = "{max_length}{upload_to}{blank}{null}{unique}".format(
+                max_length=max_length, upload_to=upload_to, blank=blank, null=null, unique=unique)
 
         if param and param[-1] == ",":
             param = param[:-1]
@@ -874,7 +879,6 @@ class TimeField_Builder(Field_Builder):
         return "{name} = {field}({param})".format(
                 name=name, field=field, param=param)
 
-# TODO: Add max_length validation
 class URLField_Builder(Field_Builder):
 
     def __init__(self,name,max_length=200,default=None,blank=False,null=False,unique=False):

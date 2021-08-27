@@ -1,3 +1,5 @@
+from re import compile as re_compile
+
 from static_data.model_builder_statics import DJANGO_FIELDS, \
                                         DJANGO_RELATION_FIELDS
 
@@ -31,3 +33,11 @@ def validate_name(name):
 def validate_field_type_input(user_input):
     length = len(DJANGO_FIELDS) + len(DJANGO_RELATION_FIELDS) - 1
     return user_input.isdigit() and 0 <= int(user_input) <= length
+
+def validate_path(path):
+    pattern = re_compile("^[a-z0-9-_]+(/[a-z0-9-_]+)*/$") # finds relative paths: "aaa/bbb/ccc/"
+
+    if pattern.search(path):
+        return True
+    else:
+        return False

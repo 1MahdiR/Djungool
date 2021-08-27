@@ -18,7 +18,7 @@ A CLI tool for automating programming **models.py** files which include django m
 - [X] Work on user interface a little bit
 - [X] Work on check_models function
 - [X] Add check_model function on export models function
-- [ ] Add 'upload_to' property to 'ImageField' and 'FileField'
+- [X] Add 'upload_to' property to 'ImageField' and 'FileField'
 - [ ] Add choice making for fields (like CharField)
 
 ## Contact

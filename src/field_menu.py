@@ -10,7 +10,7 @@ from model_builder import *
 from static_data.prompts import *
 from static_data.model_builder_statics import DJANGO_ON_DELETE_ACTIONS
 from menu_module import show_on_delete_actions
-from utility import validate_name
+from utility import validate_name, validate_path
 
 def BigIntegerField_client(name):
 
@@ -242,6 +242,13 @@ def FileField_client(name):
 	if int(max_length) < 1:
 		raise ValueError("Invalid input!")
 
+	upload_to = input(ENTER_UPLOAD_TO_PROMPT)
+	if not upload_to:
+		upload_to = None
+	else:
+		if not validate_path(upload_to):
+			raise ValueError("Invalid path!")
+
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
 		blank = True
@@ -260,7 +267,7 @@ def FileField_client(name):
 	else:
 		unique = False
 
-	field = FileField_Builder(name,max_length,blank,null,unique)
+	field = FileField_Builder(name,max_length,upload_to,blank,null,unique)
 
 	return field
 
@@ -302,6 +309,13 @@ def ImageField_client(name):
 	if int(max_length) < 1:
 		raise ValueError("Invalid input!")
 
+	upload_to = input(ENTER_UPLOAD_TO_PROMPT)
+	if not upload_to:
+		upload_to = None
+	else:
+		if not validate_path(upload_to):
+			raise ValueError("Invalid path!")
+
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
 		blank = True
@@ -320,7 +334,7 @@ def ImageField_client(name):
 	else:
 		unique = False
 
-	field = ImageField_Builder(name,max_length,blank,null,unique)
+	field = ImageField_Builder(name,max_length,upload_to,blank,null,unique)
 
 	return field
 

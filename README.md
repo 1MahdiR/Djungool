@@ -1,8 +1,11 @@
-# Django-modeler
+# Djungool
+(v1.1.1)
 
 ## About the project
 
 A CLI tool for automating programming **models.py** files which include django models.
+![djungool_version](https://img.shields.io/badge/Version-v1.1.1-green)
+![Python](https://img.shields.io/badge/Python-v3.7%5E-green?logo=python)
 
 ## How to use
 
@@ -35,7 +38,11 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-Project Link: [https://github.com/1MahdiR/django-modeler](https://github.com/1MahdiR/django-modeler)
+Project Link: [https://github.com/1MahdiR/Djungool](https://github.com/1MahdiR/Djungool)
+
+## License
+
+[GPL-3.0 License](https://github.com/1MahdiR/Djungool/blob/master/LICENSE)
 
 ---
 

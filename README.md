@@ -4,6 +4,7 @@
 ## About the project
 
 A CLI tool for automating programming **models.py** files which include django models.
+<br/>
 ![djungool_version](https://img.shields.io/badge/Version-v1.1.1-green)
 ![Python](https://img.shields.io/badge/Python-v3.7%5E-green?logo=python)
 

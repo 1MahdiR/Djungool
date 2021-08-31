@@ -1,6 +1,14 @@
 #
-# Django-modeler v1.1.0
+# Djungool v1.1.1
 # By Ray (__mr__)
+#
+# contact: a.m.rasouli.n@gmail.com
+#
+# Djungool is under GPL-3.0 license.
+# license: https://github.com/1MahdiR/Djungool/blob/master/LICENSE
+#
+# Source code is avaiable at github.
+# github page: https://github.com/1MahdiR/Djungool
 #
 
 import sys

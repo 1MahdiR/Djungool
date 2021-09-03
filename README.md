@@ -13,7 +13,7 @@ A CLI tool for automating programming **models.py** files which include django m
 - Create your models with appropriate names
 - Create fields based on your needs for each model
 - Set appropriate options for each fields
-- Export in models.py and copy it to your django-app folder
+- Export as models.py and copy it to your django-app folder
 
 ## Todo list for project:
 
@@ -23,7 +23,7 @@ A CLI tool for automating programming **models.py** files which include django m
 - [X] Work on check_models function
 - [X] Add check_model function on export models function
 - [X] Add 'upload_to' property to 'ImageField' and 'FileField'
-- [ ] Add choice making for fields (like CharField)
+- [X] Add choice making for fields (like CharField)
 
 ## Contact
 

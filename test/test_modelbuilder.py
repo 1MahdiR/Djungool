@@ -570,7 +570,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_ManyToManyField_1(self):
 
         field = ManyToManyField_Builder(
-        'humans','Human',related_name="books_human",null=False
+        'humans','Human','People',related_name="books_human",null=False
         )
 
         self.assertEqual(field.get_field(),
@@ -584,7 +584,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_ManyToManyField_2(self):
 
         field = ManyToManyField_Builder(
-        'books','Book',related_name="humans_book",null=True
+        'books','Book','Library',related_name="humans_book",null=True
         )
 
         self.assertEqual(field.get_field(),
@@ -598,7 +598,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_ForeignKey_1(self):
 
         field = ForeignKeyField_Builder(
-        'teacher','Teacher','models.CASCADE',related_name="student_teacher",null=False
+        'teacher','Teacher','class','models.CASCADE',related_name="student_teacher",null=False
         )
 
         self.assertEqual(field.get_field(),
@@ -612,7 +612,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_ForeignKey_2(self):
 
         field = ForeignKeyField_Builder(
-        'book','Book','models.DO_NOTHING',related_name="human_book",null=True
+        'book','Book','school','models.DO_NOTHING',related_name="human_book",null=True
         )
 
         self.assertEqual(field.get_field(),
@@ -626,7 +626,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_OneToOneField_1(self):
 
         field = OneToOneField_Builder(
-        'teamate','Student','models.DO_NOTHING',related_name="teamate",null=True
+        'teamate','Student','High_school','models.DO_NOTHING',related_name="teamate",null=True
         )
 
         self.assertEqual(field.get_field(),
@@ -640,7 +640,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
     def test_OneToOneField_2(self):
 
         field = OneToOneField_Builder(
-        'group','Group','models.CASCADE',related_name="group",null=False,blank=False
+        'group','Group','project','models.CASCADE',related_name="group",null=False,blank=False
         )
 
         self.assertEqual(field.get_field(),
@@ -749,7 +749,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
         )
 
         new_field = ForeignKeyField_Builder(
-        'author','Author',on_delete='models.CASCADE',related_name='book',null=True
+        'author','Author','Bookstore',on_delete='models.CASCADE',related_name='book',null=True
         )
 
         model.add_field(new_field)
@@ -771,7 +771,7 @@ class TestFieldBuilderClasses(unittest.TestCase):
 
     def test_Model_Builder_6(self): # one field and removing a field
 
-        field = ForeignKeyField_Builder('book', 'Book', on_delete="models.CASCADE", null=True)
+        field = ForeignKeyField_Builder('book', 'Book','library', on_delete="models.CASCADE", null=True)
 
         model = Model_Builder('Test_Model', field)
 

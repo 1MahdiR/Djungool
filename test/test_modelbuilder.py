@@ -804,12 +804,31 @@ class TestFieldBuilderClasses(unittest.TestCase):
         self.assertEqual(field_1, model.get_field(0))
         self.assertEqual(field_2, model.get_field(1))
         self.assertEqual(field_3, model.get_field(2))
-    
+
     def test_Model_Builder_8(self): # testing get_field with invalid index
 
         model = Model_Builder('Test_model')
 
         self.assertRaises(IndexError, model.get_field, 0)
+
+    def test_Choice_Builder_1(self): # testing Choice_Builder function
+
+        choices = Choice_Builder('LANGUAGES', ['fa', 'en', 'fr'], ['Farsi', 'English', 'French'])
+
+        self.assertEqual(str(choices), "\tLANGUAGES = [\n\t\t('fa','Farsi'),\n\t\t('en','English'),\n\t\t('fr','French'),\n\t]\n")
+
+    def test_Model_Builder_9(self): # testing Model_Builder with a field of choices
+
+        rating = Choice_Builder('RATING', ['*****','****','***','**','*'], ['Really good!', 'Good!', 'Hmm...', 'Bad!', 'Really bad!'])
+
+        field = CharField_Builder('rating', max_length=64, default="None", choices=rating)
+
+        model = Model_Builder('Book', field)
+
+        self.assertEqual(str(model), "class Book(models.Model):\n" + \
+                                        "\tRATING = [\n\t\t('*****','Really good!'),\n\t\t('****','Good!'),\n\t\t('***','Hmm...'),\n\t\t('**','Bad!'),\n\t\t('*','Really bad!'),\n\t]\n" + \
+                                        "\trating = models.CharField(max_length=64,default='None',choices=RATING)\n"
+        )
 
 if __name__ == "__main__":
     unittest.main()

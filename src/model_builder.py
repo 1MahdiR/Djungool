@@ -16,10 +16,10 @@ class Choice_Builder:
         return self._name
 
     def __str__(self):
-        choices_str = "{} = [\n".format(self._name)
+        choices_str = "\t{} = [\n".format(self._name)
         for item in self._choice_list:
-                choices_str += "\t('{}','{}'),\n".format(item[0], item[1])
-        choices_str += "]\n"
+                choices_str += "\t\t('{}','{}'),\n".format(item[0], item[1])
+        choices_str += "\t]\n"
 
         return choices_str
 
@@ -119,11 +119,12 @@ class BooleanField_Builder(Field_Builder):
 
 class CharField_Builder(Field_Builder):
 
-    def __init__(self,name,max_length,default=None,blank=False,null=False,unique=False):
+    def __init__(self,name,max_length,default=None,choices=None,blank=False,null=False,unique=False):
         self._name = name
         self._field = "models.CharField"
         self._max_length = max_length
         self._default = default
+        self._choices = choices
         self._blank = blank
         self._null = null
         self._unique = unique
@@ -146,7 +147,9 @@ class CharField_Builder(Field_Builder):
         if self._default:
             default = "default='{}',".format(self._default)
 
-
+        choices = ""
+        if self._choices:
+            choices = "choices={},".format(self._choices.get_name())
 
         blank = ""
         if self._blank:
@@ -160,8 +163,8 @@ class CharField_Builder(Field_Builder):
         if self._unique:
             unique = "unique={}".format(self._unique)
 
-        param = "{max_length}{default}{blank}{null}{unique}".format(
-                max_length=max_length, default=default, blank=blank, null=null, unique=unique)
+        param = "{max_length}{default}{choices}{blank}{null}{unique}".format(
+                max_length=max_length, default=default, choices=choices, blank=blank, null=null, unique=unique)
 
         if param and param[-1] == ",":
             param = param[:-1]
@@ -1169,6 +1172,9 @@ class Model_Builder:
 
         if self.fields:
             for field in self.fields:
+
+                if hasattr(field,'_choices') and field._choices:
+                    model_str += str(field._choices)
                 model_str += "\t{field}\n".format(field=field)
         else:
             model_str += "\tpass\n"

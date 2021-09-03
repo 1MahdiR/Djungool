@@ -12,6 +12,9 @@ class Choice_Builder:
         self._name = name
         self._choice_list = list(zip(val_list, repr_list))
 
+    def get_name(self):
+        return self._name
+
     def __str__(self):
         choices_str = "{} = [\n".format(self._name)
         for item in self._choice_list:
@@ -142,6 +145,8 @@ class CharField_Builder(Field_Builder):
         default = ""
         if self._default:
             default = "default='{}',".format(self._default)
+
+
 
         blank = ""
         if self._blank:

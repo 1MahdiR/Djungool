@@ -2,6 +2,9 @@ from static_data.model_builder_statics import DJANGO_FIELDS, DJANGO_RELATION_FIE
 
 # field_menu prompts
 ENTER_DEFAULT_VALUE_PROMPT = "Enter a default value (enter nothing for no default): "
+ENTER_CHOICES_OPTION_CONFIRM_PROMPT = "Add choices option? (y/N): "
+ENTER_CHOICE_VALUE_PROMPT = "Enter the value of option (enter nothing to continue): "
+ENTER_CHOICE_REPR_PROPMT = "Enter the human-readable name of option: "
 ENTER_MAX_LENGTH_PROMPT = "Enter a value for max length ({}): "
 ENTER_MAX_DIGIT_PROMPT = "Enter a value for max digit ({}): "
 ENTER_DECIMAL_PLACES_PROMPT = "Enter a value for decimal places ({}): "

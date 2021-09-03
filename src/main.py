@@ -103,6 +103,8 @@ def export_models():
             for key in IMPORT_OPTIONS.keys():
                 file.write(IMPORT_OPTIONS[key] + "\n")
 
+            file.write("\n")
+
             for model in MODELS:
                 file.write(str(model))
                 file.write("\n")

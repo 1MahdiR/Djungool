@@ -10,7 +10,7 @@ from model_builder import *
 from static_data.prompts import *
 from static_data.model_builder_statics import DJANGO_ON_DELETE_ACTIONS
 from menu_module import show_on_delete_actions
-from utility import validate_name, validate_path
+from utility import validate_name, validate_path, show_success, show_warning
 
 def BigIntegerField_client(name):
 
@@ -68,6 +68,33 @@ def CharField_client(name):
 
 	default = input(ENTER_DEFAULT_VALUE_PROMPT)
 
+	choices = input(ENTER_CHOICES_OPTION_CONFIRM_PROMPT)
+	if choices.lower() == 'y':
+		value_list = list()
+		repr_list = list()
+		length = 0
+		while True:
+			value = input(ENTER_CHOICE_VALUE_PROMPT)
+			if not value:
+				if length:
+					choices = Choice_Builder(name.upper(), value_list, repr_list)
+					show_success()
+					print("Created choices as '{}' with {} options!".format(name.upper(), length))
+				else:
+					choices = None
+					show_warning()
+					print("No options were enterd.\nAborted!")
+
+				break
+
+			repr = input(ENTER_CHOICE_REPR_PROPMT)
+			value_list.append(value)
+			repr_list.append(repr)
+			length += 1
+
+	else:
+		choices = None
+
 	max_length = input(ENTER_MAX_LENGTH_PROMPT.format(32))
 
 	if not max_length:
@@ -96,7 +123,7 @@ def CharField_client(name):
 	else:
 		unique = False
 
-	field = CharField_Builder(name,max_length,default,blank,null,unique)
+	field = CharField_Builder(name,max_length,default,choices,blank,null,unique)
 
 	return field
 

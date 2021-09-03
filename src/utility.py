@@ -1,4 +1,5 @@
 from re import compile as re_compile
+from keyword import kwlist as keywords
 
 from static_data.model_builder_statics import DJANGO_FIELDS, \
                                         DJANGO_RELATION_FIELDS
@@ -22,6 +23,8 @@ def print_in_box(message):
     print("╚", ("═" * (length + 2)), "╝", sep="")
 
 def validate_name(name):
+    if name in keywords: return False # If name was a Python3 keyword returns False
+
     valid_letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 
     for i in name:

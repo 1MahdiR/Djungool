@@ -1,5 +1,5 @@
 # Djungool
-(v1.1.1)
+(v1.1.3)
 
 ## About the project
 
@@ -17,13 +17,8 @@ A CLI tool for automating programming **models.py** files which include django m
 
 ## Todo list for project:
 
-- [X] Add confirmations for deleting models and fields
-- [X] Add reset model option in main menu
-- [X] Work on user interface a little bit
-- [X] Work on check_models function
-- [X] Add check_model function on export models function
-- [X] Add 'upload_to' property to 'ImageField' and 'FileField'
-- [X] Add choice making for fields (like CharField)
+- [ ] Modifing fields
+- [ ] Add choice making for fields
 
 ## Contact
 

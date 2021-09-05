@@ -811,15 +811,15 @@ class TestFieldBuilderClasses(unittest.TestCase):
 
         self.assertRaises(IndexError, model.get_field, 0)
 
-    def test_Choice_Builder_1(self): # testing Choice_Builder function
+    def test_Choice_Builder_1(self): # testing Text_Choice_Builder function
 
-        choices = Choice_Builder('LANGUAGES', ['fa', 'en', 'fr'], ['Farsi', 'English', 'French'])
+        choices = Text_Choice_Builder('LANGUAGES', ['fa', 'en', 'fr'], ['Farsi', 'English', 'French'])
 
         self.assertEqual(str(choices), "\tLANGUAGES = [\n\t\t('fa','Farsi'),\n\t\t('en','English'),\n\t\t('fr','French'),\n\t]\n")
 
-    def test_Model_Builder_9(self): # testing Model_Builder with a field of choices
+    def test_Model_Builder_9(self): # testing Model_Builder with a field of choices (Text_Choice_Builder)
 
-        rating = Choice_Builder('RATING', ['*****','****','***','**','*'], ['Really good!', 'Good!', 'Hmm...', 'Bad!', 'Really bad!'])
+        rating = Text_Choice_Builder('RATING', ['*****','****','***','**','*'], ['Really good!', 'Good!', 'Hmm...', 'Bad!', 'Really bad!'])
 
         field = CharField_Builder('rating', max_length=64, default="None", choices=rating)
 
@@ -829,6 +829,25 @@ class TestFieldBuilderClasses(unittest.TestCase):
                                         "\tRATING = [\n\t\t('*****','Really good!'),\n\t\t('****','Good!'),\n\t\t('***','Hmm...'),\n\t\t('**','Bad!'),\n\t\t('*','Really bad!'),\n\t]\n" + \
                                         "\trating = models.CharField(max_length=64,default='None',choices=RATING)\n"
         )
+
+        def test_Choice_Builder_2(self): # testing Integer_Choice_Builder function
+
+            choices = Integer_Choice_Builder('sugar', [10, 100, 1000], ['little', 'good', 'too much!'])
+
+            self.assertEqual(str(choices), "\tsugar = [\n\t\t(10,'little'),\n\t\t(100,'good'),\n\t\t(1000,'too much!'),\n\t]\n")
+
+        def test_Model_Builder_10(self): # testing Model_Builder with a field of choices (Integer_Choice_Builder)
+
+            rating = Integer_Choice_Builder('RATING', [5,4,3,2,1], ['Really good!', 'Good!', 'Hmm...', 'Bad!', 'Really bad!'])
+
+            field = CharField_Builder('rating', max_length=64, default="None", choices=rating)
+
+            model = Model_Builder('Book', field)
+
+            self.assertEqual(str(model), "class Book(models.Model):\n" + \
+                                            "\tRATING = [\n\t\t(5,'Really good!'),\n\t\t(4,'Good!'),\n\t\t(3,'Hmm...'),\n\t\t(2,'Bad!'),\n\t\t(1,'Really bad!'),\n\t]\n" + \
+                                            "\trating = models.CharField(max_length=64,default='None',choices=RATING)\n"
+            )
 
 if __name__ == "__main__":
     unittest.main()

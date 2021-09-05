@@ -1,5 +1,5 @@
 #
-# Djungool v1.1.1
+# Djungool v1.1.3
 # By Ray (__mr__)
 #
 # contact: a.m.rasouli.n@gmail.com
@@ -184,7 +184,13 @@ def add_field(model):
     field = None
 
     if field_type == '0': #BigIntegerField_client
-        field = BigIntegerField_client(name)
+        try:
+            field = BigIntegerField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '1': #BooleanField_client
         field = BooleanField_client(name)
     elif field_type == '2': #CharField_client

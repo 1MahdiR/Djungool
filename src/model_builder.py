@@ -7,7 +7,7 @@ class Field_Builder:
     def __repr__(self):
         return "\033[0;33m<field: <field_name: \033[1;33m%s\033[0;33m, field_type: \033[1;33m%s\033[0;33m>>\033[0;0m" % (self._name, self._field)
 
-class Choice_Builder:
+class Text_Choice_Builder:
     def __init__(self, name, val_list, repr_list):
         self._name = name
         self._choice_list = list(zip(val_list, repr_list))
@@ -19,6 +19,22 @@ class Choice_Builder:
         choices_str = "\t{} = [\n".format(self._name)
         for item in self._choice_list:
                 choices_str += "\t\t('{}','{}'),\n".format(item[0], item[1])
+        choices_str += "\t]\n"
+
+        return choices_str
+
+class Integer_Choice_Builder:
+    def __init__(self, name, val_list, repr_list):
+        self._name = name
+        self._choice_list = list(zip(val_list, repr_list))
+
+    def get_name(self):
+        return self._name
+
+    def __str__(self):
+        choices_str = "\t{} = [\n".format(self._name)
+        for item in self._choice_list:
+                choices_str += "\t\t({},'{}'),\n".format(item[0], item[1])
         choices_str += "\t]\n"
 
         return choices_str

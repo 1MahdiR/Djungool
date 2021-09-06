@@ -15,6 +15,13 @@ A CLI tool for automating programming **models.py** files which include django m
 - Set appropriate options for each fields
 - Export as models.py and copy it to your django-app folder
 
+## Screenshots
+
+![Screenshot #1](images/screenshot_1.png)<br/>
+![Screenshot #2](images/screenshot_2.png)<br/>
+![Screenshot #3](images/screenshot_3.png)<br/>
+![Screenshot #4](images/screenshot_4.png)<br/>
+
 ## Todo list for project:
 
 - [ ] Modifing fields

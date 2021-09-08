@@ -234,7 +234,13 @@ def add_field(model):
             print_seperator()
             return
     elif field_type == '10': #IntegerField_client
-        field = IntegerField_client(name)
+        try:
+            field = IntegerField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '11': #PositiveBigIntegerField_client
         field = PositiveBigIntegerField_client(name)
     elif field_type == '12': #PositiveIntegerField_client

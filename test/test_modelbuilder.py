@@ -840,13 +840,13 @@ class TestFieldBuilderClasses(unittest.TestCase):
 
         rating = Integer_Choice_Builder('RATING', [5,4,3,2,1], ['Really good!', 'Good!', 'Hmm...', 'Bad!', 'Really bad!'])
 
-        field = CharField_Builder('rating', max_length=64, default="None", choices=rating)
+        field = IntegerField_Builder('rating', choices=rating)
 
         model = Model_Builder('Book', field)
 
         self.assertEqual(str(model), "class Book(models.Model):\n" + \
                                         "\tRATING = [\n\t\t(5,'Really good!'),\n\t\t(4,'Good!'),\n\t\t(3,'Hmm...'),\n\t\t(2,'Bad!'),\n\t\t(1,'Really bad!'),\n\t]\n" + \
-                                        "\trating = models.CharField(max_length=64,default='None',choices=RATING)\n"
+                                        "\trating = models.IntegerField(choices=RATING)\n"
         )
 
 if __name__ == "__main__":

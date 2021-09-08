@@ -250,7 +250,13 @@ def add_field(model):
     elif field_type == '14': #SlugField_client
         field = SlugField_client(name)
     elif field_type == '15': #SmallIntegerField_client
-        field = SmallIntegerField_client(name)
+        try:
+            field = SmallIntegerField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '16': #TextField_client
         field = TextField_client(name)
     elif field_type == '17': #TimeField_client

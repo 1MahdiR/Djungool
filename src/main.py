@@ -1,5 +1,5 @@
 #
-# Djungool v1.1.3
+# Djungool v1.1.4
 # By Ray (__mr__)
 #
 # contact: a.m.rasouli.n@gmail.com
@@ -258,7 +258,13 @@ def add_field(model):
             print_seperator()
             return
     elif field_type == '13': #PositiveSmallIntegerField_client
-        field = PositiveSmallIntegerField_client(name)
+        try:
+            field = PositiveSmallIntegerField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '14': #SlugField_client
         field = SlugField_client(name)
     elif field_type == '15': #SmallIntegerField_client

@@ -1,5 +1,5 @@
 # Djungool
-(v1.1.3)
+(v1.1.4)
 
 ## About the project
 
@@ -25,7 +25,7 @@ A CLI tool for automating programming **models.py** files which include django m
 ## Todo list for project:
 
 - [ ] Modifing fields
-- [ ] Add choice making for fields
+- [x] Add choice making for fields
 
 ## Contact
 

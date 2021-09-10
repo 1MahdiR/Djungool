@@ -457,6 +457,36 @@ def PositiveBigIntegerField_client(name):
 
 	default = input(ENTER_DEFAULT_VALUE_PROMPT)
 
+	choices = input(ENTER_CHOICES_OPTION_CONFIRM_PROMPT)
+	if choices.lower() == 'y':
+		value_list = list()
+		repr_list = list()
+		length = 0
+		while True:
+			value = input(ENTER_CHOICE_VALUE_PROMPT)
+			if not value:
+				if length:
+					choices = Integer_Choice_Builder(name.upper(), value_list, repr_list)
+					show_success()
+					print("Created choices as '{}' with {} options!".format(name.upper(), length))
+				else:
+					choices = None
+					show_warning()
+					print("No options were enterd.\nAborted!")
+
+				break
+
+			if not value.isdigit():
+				raise ValueError("Value must be an integer!")
+
+			value = int(value)
+			if value <= 0:
+				raise ValueError("Value must be a positive integer!")
+			repr = input(ENTER_CHOICE_REPR_PROPMT)
+			value_list.append(value)
+			repr_list.append(repr)
+			length += 1
+
 	blank = input(ENTER_BLANK_VALUE_PROMPT)
 	if blank.lower() == 'y':
 		blank = True
@@ -475,7 +505,7 @@ def PositiveBigIntegerField_client(name):
 	else:
 		unique = False
 
-	field = PositiveBigIntegerField_Builder(name,default,blank,null,unique)
+	field = PositiveBigIntegerField_Builder(name,default,choices,blank,null,unique)
 
 	return field
 

@@ -35,7 +35,7 @@ def BigIntegerField_client(name):
 
 				break
 
-			if validate_integer(value):
+			if not validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)
@@ -419,7 +419,7 @@ def IntegerField_client(name):
 
 				break
 
-			if validate_integer(value):
+			if not validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)
@@ -476,7 +476,7 @@ def PositiveBigIntegerField_client(name):
 
 				break
 
-			if validate_integer(value):
+			if not validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)
@@ -616,7 +616,7 @@ def SmallIntegerField_client(name):
 
 				break
 
-			if validate_integer(value):
+			if not validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)

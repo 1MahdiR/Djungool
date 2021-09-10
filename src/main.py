@@ -250,7 +250,13 @@ def add_field(model):
             print_seperator()
             return
     elif field_type == '12': #PositiveIntegerField_client
-        field = PositiveIntegerField_client(name)
+        try:
+            field = PositiveIntegerField_client(name)
+        except ValueError as e:
+            show_error()
+            print(e)
+            print_seperator()
+            return
     elif field_type == '13': #PositiveSmallIntegerField_client
         field = PositiveSmallIntegerField_client(name)
     elif field_type == '14': #SlugField_client

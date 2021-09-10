@@ -44,3 +44,11 @@ def validate_path(path):
         return True
     else:
         return False
+
+def validate_integer(number):
+    pattern = re_compile("^-?[0-9]+$")
+
+    if pattern.search(number):
+        return True
+    else:
+        return False

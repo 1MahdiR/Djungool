@@ -699,10 +699,11 @@ class PositiveIntegerField_Builder(Field_Builder):
 
 class PositiveSmallIntegerField_Builder(Field_Builder):
 
-    def __init__(self,name,default=None,blank=False,null=False,unique=False):
+    def __init__(self,name,default=None,choices=None,blank=False,null=False,unique=False):
         self._name = name
         self._field = "models.PositiveSmallIntegerField"
         self._default = default
+        self._choices = choices
         self._blank = blank
         self._null = null
         self._unique = unique
@@ -723,6 +724,10 @@ class PositiveSmallIntegerField_Builder(Field_Builder):
         if self._default:
             default = "default={},".format(self._default)
 
+        choices = ""
+        if self._choices:
+            choices = "choices={},".format(self._choices.get_name())
+
         blank = ""
         if self._blank:
             blank = "blank={},".format(self._blank)
@@ -735,8 +740,8 @@ class PositiveSmallIntegerField_Builder(Field_Builder):
         if self._unique:
             unique = "unique={}".format(self._unique)
 
-        param = "{default}{blank}{null}{unique}".format(
-                default=default, blank=blank, null=null, unique=unique)
+        param = "{default}{choices}{blank}{null}{unique}".format(
+                default=default, choices=choices, blank=blank, null=null, unique=unique)
 
         if param and param[-1] == ",":
             param = param[:-1]

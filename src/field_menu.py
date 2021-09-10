@@ -10,7 +10,7 @@ from model_builder import *
 from static_data.prompts import *
 from static_data.model_builder_statics import DJANGO_ON_DELETE_ACTIONS
 from menu_module import show_on_delete_actions
-from utility import validate_name, validate_path, show_success, show_warning
+from utility import validate_name, validate_path, validate_integer, show_success, show_warning
 
 def BigIntegerField_client(name):
 
@@ -35,7 +35,7 @@ def BigIntegerField_client(name):
 
 				break
 
-			if not value.isdigit():
+			if validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)
@@ -419,7 +419,7 @@ def IntegerField_client(name):
 
 				break
 
-			if not value.isdigit():
+			if validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)
@@ -476,7 +476,7 @@ def PositiveBigIntegerField_client(name):
 
 				break
 
-			if not value.isdigit():
+			if validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)
@@ -616,7 +616,7 @@ def SmallIntegerField_client(name):
 
 				break
 
-			if not value.isdigit():
+			if validate_integer(value):
 				raise ValueError("Value must be an integer!")
 
 			value = int(value)
